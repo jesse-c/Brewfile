@@ -1,0 +1,2 @@
+brew "dnsmasq", args: ["with-dnssec"]
+brew "dnscrypt-proxy"

@@ -1,0 +1,1 @@
+brew "privoxy", restart_service: :changed

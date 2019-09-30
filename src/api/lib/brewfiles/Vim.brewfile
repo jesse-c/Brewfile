@@ -1,0 +1,1 @@
+brew "vim", args: ["with-python3", "with-gettext","with-lua"]

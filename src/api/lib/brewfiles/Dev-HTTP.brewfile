@@ -1,0 +1,3 @@
+brew "httpie"
+brew "mitmxproxy"
+brew "curl", args: ["with-openssl"]
