@@ -1,0 +1,12 @@
+require "rake/testtask"
+
+task default: :test
+
+Rake::TestTask.new do |t|
+  t.test_files = FileList['spec/**/*_spec.rb']
+end
+
+task :run do
+  sh "rerun -- rackup --port 4000 config.ru"
+end
+
