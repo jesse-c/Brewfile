@@ -6,6 +6,7 @@ git_source(:github) {|brewfiles| "https://github.com/#{brewfiles}" }
 
 gem "roda", "~> 3.31"
 gem "rake", "~> 13.0"
+gem "puma", "~> 4.3"
 gem "ougai", "~> 1.8"
 
 group :development, :test do

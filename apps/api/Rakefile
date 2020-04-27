@@ -7,6 +7,6 @@ Rake::TestTask.new do |t|
 end
 
 task :run do
-  sh "rerun -- rackup --port 4000 config.ru"
+  sh "rerun -- puma --port 4000 config.ru"
 end
 
