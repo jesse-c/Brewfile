@@ -9,5 +9,10 @@ class Brewer
   end
 
   def search(queries)
+    []
+  end
+
+  def generate(queries)
+    []
   end
 end

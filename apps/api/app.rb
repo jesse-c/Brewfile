@@ -6,6 +6,7 @@ class App < Roda
   plugin :json
   plugin :not_found
   plugin :json_parser
+  plugin :halt
 
   @@brewer = Brewer.new
 
@@ -18,7 +19,23 @@ class App < Roda
       r.get "search", String do |query|
         queries = query.split(',')
 
-        {}
+        @@brewer.search(queries)
+      end
+
+      r.get "generate", String do |query|
+        queries = query.split(',')
+
+        r.halt(400, {errors: ['Need ≥ 1 Brewfile names']}) if queries.empty?
+
+        @@brewer.generate(queries)
+      end
+
+      r.get "generate" do
+        r.halt(400, {errors: ['Need ≥ 1 Brewfile names']})
+      end
+
+      r.get "generate/" do
+        r.halt(400, {errors: ['Need ≥ 1 Brewfile names']})
       end
     end
   end
