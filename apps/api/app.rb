@@ -5,7 +5,6 @@ require_relative './lib/brewer/brewer'
 class App < Roda
   plugin :json
   plugin :not_found
-  plugin :json_parser
   plugin :halt
 
   @@brewer = Brewer.new
