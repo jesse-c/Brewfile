@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 # Brewer operates on a collection of Brewfiles, allowing you to list, search,
 # and generate new ones.
 class Brewer
-  def initialize()
+  def initialize
   end
 
   def list
     []
   end
 
-  def search(queries)
+  def search(_queries)
     []
   end
 
-  def generate(queries)
+  def generate(_queries)
     []
   end
 end

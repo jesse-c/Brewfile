@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'time'
 require 'rubygems'
 require 'ougai'
@@ -6,7 +8,8 @@ module Rack
   module Ougai
     class Logger
       def initialize(app, level = ::Logger::INFO)
-        @app, @level = app, level
+        @app = app
+        @level = level
       end
 
       def call(env)
@@ -36,13 +39,13 @@ module Rack
       def create_log(env, status, headers)
         {
           time: Time.now,
-          remote_addr: env['HTTP_X_FORWARDED_FOR'] || env["REMOTE_ADDR"],
+          remote_addr: env['HTTP_X_FORWARDED_FOR'] || env['REMOTE_ADDR'],
           method: env[REQUEST_METHOD],
           path: env[PATH_INFO],
           query: env[QUERY_STRING],
           status: status.to_i,
           request_id: headers['X-Request-ID'],
-          timing: env['TIMING'],
+          timing: env['TIMING']
         }
       end
     end

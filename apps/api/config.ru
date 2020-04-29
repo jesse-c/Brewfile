@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './app.rb'
 require_relative 'rack_ougai_logger'
 
