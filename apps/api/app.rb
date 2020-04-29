@@ -19,6 +19,10 @@ class App < Roda
     response['X-Request-ID'] = @request_id
   end
 
+  not_found do
+    {}
+  end
+
   @@brewer = Brewer.new
 
   route do |r|
@@ -49,9 +53,5 @@ class App < Roda
         r.halt(400, {errors: ['Need ≥ 1 Brewfile names']})
       end
     end
-  end
-
-  not_found do
-    {}
   end
 end
