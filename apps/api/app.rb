@@ -1,4 +1,5 @@
 require 'roda'
+require 'SecureRandom'
 require_relative './lib/brewer/brewer'
 
 
@@ -6,6 +7,17 @@ class App < Roda
   plugin :json
   plugin :not_found
   plugin :halt
+  plugin :hooks
+
+  before do
+    @time = Time.now
+    @request_id = SecureRandom.uuid
+  end
+
+  after do |res|
+    env['TIMING'] = Time.now - @time
+    response['X-Request-ID'] = @request_id
+  end
 
   @@brewer = Brewer.new
 
