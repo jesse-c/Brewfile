@@ -45,8 +45,6 @@ class Brewer
            .prepend byline
   end
 
-  private
-
   def load_brewfiles(root_path)
     @paths = Dir.entries(root_path)
                 .select { |e| File.extname(e) == EXTENSION }

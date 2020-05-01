@@ -1,60 +1,38 @@
-# require './lib/brewer/brewer'
+# frozen_string_literal: true
 
-# describe Brewer do
-#   describe ':initialize' do
-#     it 'initialises correctly' do
-#       _ = Brewer.new
-#     end
-#   end
+require 'minitest/autorun'
+require './lib/brewer/brewer'
 
-#   describe ':search' do
-#     it 'finds nothing' do
-#       brewer = Brewer.new
+describe Brewer do
+  before do
+    @brewer = Brewer.new
+  end
 
-#       found = brewer.search(['zzz'])
-#       expect(found).to eq ''
-#     end
+  describe 'when searching' do
+    it 'finds nothing' do
+      _(@brewer.search(%w[z])).must_equal ''
+    end
 
-#     it 'finds something' do
-#       brewer = Brewer.new
-#       found = brewer.search(%w[v Privacy])
-#       expect(found).to eq %w[Neovim Dev-HTTP Dev-Go Privacy Dev-All].join("\n")
-#     end
+    it 'finds something' do
+      _(@brewer.search(%w[v Privacy])).must_equal %w[Neovim Dev-HTTP Dev-Go Privacy Vim Dev-All].join("\n")
+    end
+  end
 
-#     it 'is missing terms' do
-#       brewer = Brewer.new
-#       expect { brewer.search([]) }.to raise_error(ArgumentError)
-#     end
-#   end
+  describe 'when listing' do
+    it 'lists all brewfiles' do
+      _(@brewer.list).must_equal %w[All Neovim Dev-HTTP Python Dev-Go Privacy Vim DNS Dev-All Core].join("\n")
+    end
+  end
 
-#   describe ':list' do
-#     it 'lists the Brewfiles' do
-#       brewer = Brewer.new
+  describe 'when generating' do
+    it 'generates a combined brewfile' do
+      _(@brewer.generate(%w[Neovim Privacy])).must_equal "# brewfile.io\n# Generated from Neovim, Privacy\n\nbrew tap neovim/neovim \nbrew install neovim \nbrew install privoxy"
+    end
+  end
 
-#       listed = brewer.list
-#       expect(listed).to eq "All\nNeovim\nDev-HTTP\nPython\nDev-Go\nPrivacy\nVim\nDNS\nDev-All\nCore"
-#     end
-#   end
-
-#   describe ':generate' do
-#     it 'generates a Brewfile' do
-#       brewer = Brewer.new
-
-#       brewfile = brewer.generate(%w[Neovim Privacy])
-#       expect(brewfile).to eq "brew tap neovim/neovim \nbrew install neovim \nbrew install privoxy"
-#     end
-
-#     it 'is missing terms' do
-#       brewer = Brewer.new
-#       expect { brewer.generate([]) }.to raise_error(ArgumentError)
-#     end
-#   end
-# end
-
-# describe ':strip_ext' do
-#   it 'strips the extension' do
-#     expect(strip_ext('Dev.Brewfile')).to eq 'Dev'
-#   end
-# end
-
-# # TODO: :entry_to_s
+  describe 'stripping extensions' do
+    it 'strips the extension' do
+      _(@brewer.strip_ext('Dev.Brewfile')).must_equal 'Dev'
+    end
+  end
+end
