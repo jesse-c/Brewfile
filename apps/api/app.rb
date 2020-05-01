@@ -5,7 +5,6 @@ require 'SecureRandom'
 require_relative './lib/brewer/brewer'
 
 class App < Roda
-  plugin :json
   plugin :not_found
   plugin :halt
   plugin :hooks
