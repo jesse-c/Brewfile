@@ -1,0 +1,9 @@
+build/
+node_modules/
+target/
+.shadow-cljs/
+.nrepl-port
+public/js/cljs-runtime/
+public/js/manifest.edn
+public/js/main.js
+
