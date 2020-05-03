@@ -1,5 +1,5 @@
 (ns Brewfile.app
-  (:require [reagent.core :as reagent]
+  (:require [reagent.dom :as reagent]
             [re-frame.core :as rf]
             [clojure.string :as str]))
 

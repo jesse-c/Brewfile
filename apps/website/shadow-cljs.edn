@@ -1,16 +1,13 @@
-;; shadow-cljs configuration
-{:source-paths
- ["src/main"
-  "src/test"]
+{:deps   {:aliases [:dev :test]}
 
- :dev-http {8000 "public"}
-
- :dependencies
- [[re-frame "0.10.7"]]
-
- :builds
- {:app{:target :browser
-       :output-dir "public/js"
-       :asset-path "/js"
-       :modules {:main {:entries [Brewfile.app]}}}}}
-
+ :nrepl  {:port 7002}
+ :builds {:app {:target           :browser
+                :asset-path       "js"
+                :output-dir       "public/js"
+              
+                :modules          {:main {:entries [Brewfile.app]}}
+                                          
+                                          
+                :devtools         {:http-port 8021
+                                   :http-root "public/"}}}}
+ 
