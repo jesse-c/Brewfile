@@ -1,4 +1,4 @@
-(ns Brewfile.app
+(ns brewfile.core
   (:require [reagent.dom :as reagent]
             [re-frame.core :as rf]
             [clojure.string :as str]))

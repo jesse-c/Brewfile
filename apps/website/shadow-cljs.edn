@@ -5,7 +5,7 @@
                 :asset-path       "js"
                 :output-dir       "public/js"
               
-                :modules          {:main {:entries [Brewfile.app]}}
+                :modules          {:main {:entries [brewfile.core]}}
                                           
                                           
                 :devtools         {:http-port 8021
