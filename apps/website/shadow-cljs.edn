@@ -12,5 +12,5 @@
 
                 :devtools         {:http-port 8021
                                    :http-root "public/"
-                                   :preloads [day8.re-frame-10x.preload]}}}}
+                                   :preloads [re-frisk.preload]}}}}
  
