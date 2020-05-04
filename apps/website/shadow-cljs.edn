@@ -4,13 +4,13 @@
  :builds {:app {:target           :browser
                 :asset-path       "js"
                 :output-dir       "public/js"
-              
+
                 :modules          {:main {:entries [brewfile.core]}}
-                                          
+
                 :compiler-options
                 {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}
 
                 :devtools         {:http-port 8021
                                    :http-root "public/"
                                    :preloads [re-frisk.preload]}}}}
- 
+
