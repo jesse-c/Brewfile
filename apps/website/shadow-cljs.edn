@@ -7,7 +7,10 @@
               
                 :modules          {:main {:entries [brewfile.core]}}
                                           
-                                          
+                :compiler-options
+                {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}
+
                 :devtools         {:http-port 8021
-                                   :http-root "public/"}}}}
+                                   :http-root "public/"
+                                   :preloads [day8.re-frame-10x.preload]}}}}
  
