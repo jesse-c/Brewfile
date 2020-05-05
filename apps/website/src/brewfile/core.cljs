@@ -101,7 +101,7 @@
   (rf/clear-subscription-cache!)
   (render))
 
-(defn run
+(defn ^:export init
   []
   (rf/dispatch-sync [:initialize])  ;; put a value into application state
   (render))                         ;; mount the application's ui into '<div id="app" />'

@@ -5,7 +5,8 @@
                 :asset-path       "js"
                 :output-dir       "public/js"
 
-                :modules          {:main {:entries [brewfile.core]}}
+                :modules          {:main {:entries [brewfile.core]
+                                          :init-fn brewfile.core/init}}
 
                 :compiler-options
                 {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}
