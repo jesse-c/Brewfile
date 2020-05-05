@@ -12,5 +12,6 @@
 
                 :devtools         {:http-port 8021
                                    :http-root "public/"
+                                   :after-load brewfile.core/clear-cache-and-render!
                                    :preloads [re-frisk.preload]}}}}
 
