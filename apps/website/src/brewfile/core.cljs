@@ -3,8 +3,12 @@
             [re-frame.core :as rf]
             [clojure.string :as str]))
 
-;; A detailed walk-through of this source code is provided in the docs:
-;; https://github.com/day8/re-frame/blob/master/docs/CodeWalkthrough.md
+
+;; -- Debugging aids ----------------------------------------------------------
+
+
+(enable-console-print!)   ;; so that println writes to `console.log`
+
 
 ;; -- Domino 1 - Event Dispatch -----------------------------------------------
 
