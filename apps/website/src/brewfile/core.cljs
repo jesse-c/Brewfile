@@ -7,84 +7,219 @@
 ;; -- Debugging aids ----------------------------------------------------------
 
 
-(enable-console-print!)   ;; so that println writes to `console.log`
+(enable-console-print!)
 
 
 ;; -- Domino 1 - Event Dispatch -----------------------------------------------
 
 
-(defn dispatch-timer-event
-  []
-  (let [now (js/Date.)]
-    (rf/dispatch [:timer now])))  ;; <-- dispatch used
-
-;; Call the dispatching function every second.
-;; `defonce` is like `def` but it ensures only one instance is ever
-;; created in the face of figwheel hot-reloading of this file.
-(defonce do-timer (js/setInterval dispatch-timer-event 1000))
 
 
 ;; -- Domino 2 - Event Handlers -----------------------------------------------
 
 
-(rf/reg-event-db              ;; sets up initial application state
- :initialize                 ;; usage:  (dispatch [:initialize])
- (fn [_ _]                   ;; the two parameters are not important here, so use _
-   {:time (js/Date.)         ;; What it returns becomes the new application state
-    :time-color "#f88"}))    ;; so the application state will initially be a map with two keys
+(defn seq-contains?
+  [coll item]
+  (> (.indexOf coll item) -1))
 
+(rf/reg-event-db
+ :initialize
+ (fn [_ _]
+   {:term ""
+    :selected []}))
 
-(rf/reg-event-db                ;; usage:  (dispatch [:time-color-change 34562])
- :time-color-change            ;; dispatched when the user enters a new colour into the UI text field
- (fn [db [_ new-color-value]]  ;; -db event handlers given 2 parameters:  current application state and event (a vector)
-   (assoc db :time-color new-color-value)))   ;; compute and return the new application state
+(rf/reg-event-db
+ :term-change
+ (fn [db [_ new-term-value]]
+   (assoc db :term new-term-value)))
 
+(rf/reg-event-db
+ :term-select
+ (fn [db [_ term]]
+   (let [selected (:selected db)]
+     (if-not (seq-contains? selected term)
+       (assoc db :selected (conj selected term))
+       db))))
 
-(rf/reg-event-db                 ;; usage:  (dispatch [:timer a-js-Date])
- :timer                         ;; every second an event of this kind will be dispatched
- (fn [db [_ new-time]]          ;; note how the 2nd parameter is destructured to obtain the data value
-   (assoc db :time new-time)))  ;; compute and return the new application state
+(rf/reg-event-db
+ :term-unselect
+ (fn [db [_ term]]
+   (let [selected (:selected db)]
+     (if (seq-contains? selected term)
+       (assoc db :selected (remove #(= % term) selected))
+       db))))
 
 
 ;; -- Domino 4 - Query  -------------------------------------------------------
 
-(rf/reg-sub
- :time
- (fn [db _]     ;; db is current app state. 2nd unused param is query vector
-   (:time db))) ;; return a query computation over the application state
 
 (rf/reg-sub
- :time-color
+ :term
  (fn [db _]
-   (:time-color db)))
+   (:term db)))
 
+(rf/reg-sub
+ :selected
+ (fn [db _]
+   (:selected db)))
 
 ;; -- Domino 5 - View Functions ----------------------------------------------
 
 
-(defn clock
-  []
-  [:div.example-clock
-   {:style {:color @(rf/subscribe [:time-color])}}
-   (-> @(rf/subscribe [:time])
-       .toTimeString
-       (str/split " ")
-       first)])
+(def brewfiles
+  ["All" "Core" "DNS" "Dev-All" "Dev-Go" "Dev-HTTP" "Neovim" "Privacy" "Python" "Vim"])
 
-(defn color-input
+(defn home-page-url [] "https://www.jesseclaven.com/")
+
+(defn term-input
   []
-  [:div.color-input
-   "Time color: "
+  [:div
    [:input {:type "text"
-            :value @(rf/subscribe [:time-color])
-            :on-change #(rf/dispatch [:time-color-change (-> % .-target .-value)])}]])  ;; <---
+            :value @(rf/subscribe [:term]),
+            :on-change #(rf/dispatch [:term-change (-> % .-target .-value)])}]])
+
+(defn term-selected
+  []
+  (let [selected @(rf/subscribe [:selected])]
+    [:ul
+     (for [x selected]
+       [:li {:key (str "term-selected-" x), :on-click #(rf/dispatch [:term-unselect x])} x])]))
+
+(defn term-chooser
+  []
+  (let [selected @(rf/subscribe [:selected])
+        term @(rf/subscribe [:term])
+        remaining (filterv #(str/includes? (str/lower-case %) (str/lower-case term))
+                           (filterv #(not (seq-contains? selected %)) brewfiles))]
+    [:ul]
+    (for [x remaining]
+      [:li {:key (str "term-chooser-" x), :on-click #(rf/dispatch [:term-select x])} x])))
+
+(defn generate-button
+  []
+  [:a {:href @(rf/subscribe [:selected]), :role "button"} "Generate"])
+
+(defn code-inline
+  [content]
+  [:code {:style {:background-color "#E5E5E5", :padding "3px"}} content])
+
+(defn header
+  []
+  [:div {:style {:background-color "#000000",
+                 :width "100%"
+                 :height "40px",
+                 :padding "0 10px",
+                 :color "#FFFFFF",
+                 :display "flex",
+                 :align-items "center",
+                 :font-size "14px"}}
+   [:span "A project by " [:a {:href (home-page-url)} "Jesse Claven"] "."]])
+
+(defn notice
+  []
+  [:div {:style {:background-color "#FFFE61",
+                 :width "100%",
+                 :height "40px",
+                 :padding "0 10px",
+                 :color "#000000",
+                 :display "flex",
+                 :align-items "center"}}
+   [:span {:style {:background-color "#000000",
+                   :color "#FFFFFF",
+                   :padding "5px 7px",
+                   :margin-right "10px",
+                   :border-radius "3px",
+                   :font-size "12px",
+                   :font-weight "bold"}}
+    "NEW!"]
+   [:span {:style {:font-size "14px"}} "Welcome to Brewfiles—have a look through the introductory post."]])
+
+(defn intro
+  []
+  [:dev
+   [:h1 {:name "intro"} "Brewfiles"]
+   [:p "Generate Brewfiles from existing templates."]])
+
+(defn search
+  []
+  [:dev
+   [:dev
+    (term-input)
+    (term-selected)
+    (term-chooser)
+    (generate-button)]])
+
+(defn templates
+  []
+  [:div
+   [:div
+    [:h2 "Templates"]
+    [:span (count brewfiles)]
+    [:span [:a {:href "https://github.com/jesse-c/Brewfile"} "Add"]]]
+   [:div
+    [:ul
+     (for [x brewfiles]
+       [:li {:key (str "template-" x)} x])]]])
+
+(defn instructions
+  []
+  [:div
+   [:h2 "Instructions"]
+   [:ol
+    [:li "Install " [:a {:href "https://www.brew.sh"} "Homebrew"]]
+    [:li "Install " [:a {:href "https://github.com/mas-cli/mas"} "mas"]]
+    [:li "Generate a Brewfile and place it in your " (code-inline "$HOME")]
+    [:li "Run " (code-inline "brew bundle")]]])
+
+(def api-endpoints [{:desc "List all", :endpoint "list/$t1,$t2,$tX", :method "GET"}
+                    {:desc "Search", :endpoint "search/$t1,$t2,$tX", :method "GET"}
+                    {:desc "Generate", :endpoint "generate/$t1,$t2,$tX", :method "GET"}
+                    {:desc "Help", :endpoint "", :method "GET"}])
+
+(def base-endpoint "http://brewfile.io/api/")
+
+(defn api
+  []
+  [:div
+   [:h2 "API"]
+   [:table
+    [:tbody
+     (for [x api-endpoints]
+       [:tr {:key (str "api-endpoint-" x)}
+        [:td (:desc x)]
+        [:td (code-inline (:method x))]
+        [:td (-> x (get :endpoint) (#(conj [base-endpoint] %)) (str/join) (code-inline))]])]]
+   [:div "Where " (code-inline "$tX") " is a term, e.g. " (code-inline (rand-nth brewfiles)) "."]])
+
+(defn notes
+  []
+  [:div
+   [:span "Thank you to the people behind Homebrew and Gitignore.io."]
+   [:span "View project source code."]])
+
+(defn footer
+  []
+  [:div
+   [:span [:a {:href "/#intro"} "↑ Top"]]
+   [:span [:a {:href (home-page-url)} "Jesse Claven"]]])
 
 (defn ui
   []
   [:div
-   [:h1 "Hello world, it is now"]
-   [clock]
-   [color-input]])
+   [header]
+   [notice]
+   [intro]
+   [search]
+   [:hr]
+   [templates]
+   [:hr]
+   [instructions]
+   [:hr]
+   [api]
+   [:hr]
+   [notes]
+   [:hr]
+   [footer]])
 
 ;; -- Entry Point -------------------------------------------------------------
 
@@ -105,4 +240,3 @@
   []
   (rf/dispatch-sync [:initialize])  ;; put a value into application state
   (render))                         ;; mount the application's ui into '<div id="app" />'
-
