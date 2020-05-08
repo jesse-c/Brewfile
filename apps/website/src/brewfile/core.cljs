@@ -67,7 +67,7 @@
 
 
 (def brewfiles
-  ["All" "Core" "DNS" "Dev-All" "Dev-Go" "Dev-HTTP" "Neovim" "Privacy" "Python" "Vim"])
+  ["Core" "DNS" "Dev-Go" "Dev-HTTP" "Neovim" "Privacy" "Python" "Vim"])
 
 (defn home-page-url [] "https://www.jesseclaven.com/")
 
