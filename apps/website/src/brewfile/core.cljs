@@ -135,14 +135,14 @@
 
 (defn intro
   []
-  [:dev
+  [:div
    [:h1 {:name "intro"} "Brewfiles"]
    [:p "Generate Brewfiles from existing templates."]])
 
 (defn search
   []
-  [:dev
-   [:dev
+  [:div
+   [:div
     (term-input)
     (term-selected)
     (term-chooser)
