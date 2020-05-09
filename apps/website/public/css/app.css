@@ -2,3 +2,55 @@ body {
   font-family: 'Karla', sans-serif;
   margin: 0;
 }
+
+code {
+  background-color: #E5E5E5;
+  padding: 3px;
+}
+
+.header {
+  background-color: #000000;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.header a {
+  color: #FFFFFF;
+  transition: 0.2s linear;
+}
+
+.header a:hover {
+}
+
+.header a:visited {
+  color: #FFFFFF;
+}
+
+.notice {
+  background-color: #FFFE61;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  color: #000000;
+  display: flex;
+  align-items: center
+}
+
+.notice span:nth-of-type(1) {
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 5px 7px;
+  margin-right: 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.notice span:nth-of-type(2) {
+  font-size: 14px;
+}

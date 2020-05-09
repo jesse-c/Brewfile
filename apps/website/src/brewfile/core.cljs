@@ -101,38 +101,18 @@
 
 (defn code-inline
   [content]
-  [:code {:style {:background-color "#E5E5E5", :padding "3px"}} content])
+  [:code content])
 
 (defn header
   []
-  [:div {:style {:background-color "#000000",
-                 :width "100%"
-                 :height "40px",
-                 :padding "0 10px",
-                 :color "#FFFFFF",
-                 :display "flex",
-                 :align-items "center",
-                 :font-size "14px"}}
+  [:div.header
    [:span "A project by " [:a {:href (home-page-url)} "Jesse Claven"] "."]])
 
 (defn notice
   []
-  [:div {:style {:background-color "#FFFE61",
-                 :width "100%",
-                 :height "40px",
-                 :padding "0 10px",
-                 :color "#000000",
-                 :display "flex",
-                 :align-items "center"}}
-   [:span {:style {:background-color "#000000",
-                   :color "#FFFFFF",
-                   :padding "5px 7px",
-                   :margin-right "10px",
-                   :border-radius "3px",
-                   :font-size "12px",
-                   :font-weight "bold"}}
-    "NEW!"]
-   [:span {:style {:font-size "14px"}} "Welcome to Brewfiles—have a look through the introductory post."]])
+  [:div.notice
+   [:span "NEW!"]
+   [:span "Welcome to Brewfiles!"]])
 
 (defn intro
   []
