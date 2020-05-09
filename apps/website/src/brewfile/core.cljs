@@ -88,20 +88,20 @@
 
 (defn term-input
   []
-  [:div
-   [:input {:type "text"
-            :value @(rf/subscribe [:term]),
-            :on-change #(rf/dispatch [:term-change (-> % .-target .-value)])
-            :on-blur #(rf/dispatch [:search-unfocus])
-            :on-focus #(rf/dispatch [:search-focus])}]])
+  [:input {:type "text"
+           :class "search-input"
+           :value @(rf/subscribe [:term]),
+           :on-change #(rf/dispatch [:term-change (-> % .-target .-value)])
+           :on-blur #(rf/dispatch [:search-unfocus])
+           :on-focus #(rf/dispatch [:search-focus])}])
 
 (defn term-selected
   []
   (let [selected @(rf/subscribe [:selected])]
-    [:ul
+    [:div.selected
      (for [x selected]
-       [:li {:key (str "term-selected-" x),
-             :on-click #(rf/dispatch [:term-unselect x])}
+       [:div {:key (str "term-selected-" x),
+              :on-click #(rf/dispatch [:term-unselect x])}
         x])]))
 
 (defn term-chooser
@@ -118,7 +118,10 @@
 
 (defn generate-button
   []
-  [:a {:href @(rf/subscribe [:selected]), :role "button"} "Generate"])
+  [:a {:href @(rf/subscribe [:selected]),
+       :class "generate-button"
+       :role "button"}
+   "Generate"])
 
 (defn code-inline
   [content]
@@ -143,12 +146,12 @@
 
 (defn search
   []
-  [:div
-   [:div
+  [:div.search-container
+   [:div.search
     (term-input)
-    (generate-button)
-    (term-selected)
-    (term-chooser)]])
+    (generate-button)]
+   (term-chooser)
+   (term-selected)])
 
 (defn templates
   []

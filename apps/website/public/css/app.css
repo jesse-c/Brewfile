@@ -55,6 +55,72 @@ code {
   font-size: 14px;
 }
 
-.term-chooser {}
+.search-container {
+}
+
+.search {
+  display: flex;
+}
+
+.search-input {
+  height: 30px;
+  padding: 0 5px;
+  border-radius: 2px;
+}
+
+.generate-button {
+  height: 30px;
+  margin: 0 0 0 20px;
+  padding: 0px 10px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 3px;
+  background-color: #000000;
+}
+
+a.generate-button {
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: 0.2s linear;
+}
+
+a.generate-button:hover {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+a.generate-button:visited {
+  color: #FFFFFF;
+}
+
+.selected {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selected div {
+  padding: 2px 10px;
+  margin: 0 5px;
+  border: 1px dashed #000000;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: 0.2s linear;
+}
+
+.selected div:hover {
+  color: #FFFFFF;
+  background-color: #000000;
+  border: 1px solid #000000;
+}
+
+.selected div:nth-of-type(1) {
+  margin: 0 5px 0 0;
+}
+
+.term-chooser {
+}
+
 .term-chooser.focused { display: block; }
+
 .term-chooser.unfocused { display: none; }
