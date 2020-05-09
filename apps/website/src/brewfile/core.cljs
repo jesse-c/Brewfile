@@ -144,9 +144,9 @@
   [:div
    [:div
     (term-input)
+    (generate-button)
     (term-selected)
-    (term-chooser)
-    (generate-button)]])
+    (term-chooser)]])
 
 (defn templates
   []
