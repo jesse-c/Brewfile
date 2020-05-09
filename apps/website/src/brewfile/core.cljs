@@ -86,23 +86,16 @@
 
 (defn home-page-url [] "https://www.jesseclaven.com/")
 
-(defn term-input
-  []
-  [:input {:type "text"
-           :class "search-input"
-           :value @(rf/subscribe [:term]),
-           :on-change #(rf/dispatch [:term-change (-> % .-target .-value)])
-           :on-blur #(rf/dispatch [:search-unfocus])
-           :on-focus #(rf/dispatch [:search-focus])}])
+(defn term-chooser-list
+  [remaining]
+  (for [x remaining]
+    [:li {:key (str "term-chooser-" x),
+          :on-click #(rf/dispatch [:term-select x])}
+     x]))
 
-(defn term-selected
+(defn term-chooser-empty
   []
-  (let [selected @(rf/subscribe [:selected])]
-    [:div.selected
-     (for [x selected]
-       [:div {:key (str "term-selected-" x),
-              :on-click #(rf/dispatch [:term-unselect x])}
-        x])]))
+  [:li [:em "No matches"]])
 
 (defn term-chooser
   []
@@ -113,8 +106,29 @@
     [:ul {:class (if @(rf/subscribe [:search-focused])
                    "term-chooser focused"
                    "term-chooser unfocused")}
-     (for [x remaining]
-       [:li {:key (str "term-chooser-" x), :on-click #(rf/dispatch [:term-select x])} x])]))
+     (if (> (count remaining) 0)
+       (term-chooser-list remaining)
+       (term-chooser-empty))]))
+
+(defn term-input
+  []
+  [:div
+   [:input {:type "text"
+            :class "search-input"
+            :value @(rf/subscribe [:term]),
+            :on-change #(rf/dispatch [:term-change (-> % .-target .-value)])
+            :on-blur #(rf/dispatch [:search-unfocus])
+            :on-focus #(rf/dispatch [:search-focus])}]
+   (term-chooser)])
+
+(defn term-selected
+  []
+  (let [selected @(rf/subscribe [:selected])]
+    [:div.selected
+     (for [x selected]
+       [:div {:key (str "term-selected-" x),
+              :on-click #(rf/dispatch [:term-unselect x])}
+        x])]))
 
 (defn generate-button
   []
@@ -150,7 +164,6 @@
    [:div.search
     (term-input)
     (generate-button)]
-   (term-chooser)
    (term-selected)])
 
 (defn templates
