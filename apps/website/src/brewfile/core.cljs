@@ -100,7 +100,9 @@
   (let [selected @(rf/subscribe [:selected])]
     [:ul
      (for [x selected]
-       [:li {:key (str "term-selected-" x), :on-click #(rf/dispatch [:term-unselect x])} x])]))
+       [:li {:key (str "term-selected-" x),
+             :on-click #(rf/dispatch [:term-unselect x])}
+        x])]))
 
 (defn term-chooser
   []
