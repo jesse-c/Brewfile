@@ -91,9 +91,9 @@
         term @(rf/subscribe [:term])
         remaining (filterv #(str/includes? (str/lower-case %) (str/lower-case term))
                            (filterv #(not (seq-contains? selected %)) brewfiles))]
-    [:ul]
-    (for [x remaining]
-      [:li {:key (str "term-chooser-" x), :on-click #(rf/dispatch [:term-select x])} x])))
+    [:ul
+     (for [x remaining]
+       [:li {:key (str "term-chooser-" x), :on-click #(rf/dispatch [:term-select x])} x])]))
 
 (defn generate-button
   []
