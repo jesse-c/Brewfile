@@ -26,7 +26,8 @@
  :initialize
  (fn [_ _]
    {:term ""
-    :selected []}))
+    :selected []
+    :search-focused false}))
 
 (rf/reg-event-db
  :term-change
@@ -49,6 +50,15 @@
        (assoc db :selected (remove #(= % term) selected))
        db))))
 
+(rf/reg-event-db
+ :search-focus
+ (fn [db _]
+   (assoc db :search-focused true)))
+
+(rf/reg-event-db
+ :search-unfocus
+ (fn [db _]
+   (assoc db :search-focused false)))
 
 ;; -- Domino 4 - Query  -------------------------------------------------------
 
@@ -63,6 +73,11 @@
  (fn [db _]
    (:selected db)))
 
+(rf/reg-sub
+ :search-focused
+ (fn [db _]
+   (:search-focused db)))
+
 ;; -- Domino 5 - View Functions ----------------------------------------------
 
 
@@ -76,7 +91,9 @@
   [:div
    [:input {:type "text"
             :value @(rf/subscribe [:term]),
-            :on-change #(rf/dispatch [:term-change (-> % .-target .-value)])}]])
+            :on-change #(rf/dispatch [:term-change (-> % .-target .-value)])
+            :on-blur #(rf/dispatch [:search-unfocus])
+            :on-focus #(rf/dispatch [:search-focus])}]])
 
 (defn term-selected
   []
@@ -91,7 +108,9 @@
         term @(rf/subscribe [:term])
         remaining (filterv #(str/includes? (str/lower-case %) (str/lower-case term))
                            (filterv #(not (seq-contains? selected %)) brewfiles))]
-    [:ul
+    [:ul {:class (if @(rf/subscribe [:search-focused])
+                   "term-chooser focused"
+                   "term-chooser unfocused")}
      (for [x remaining]
        [:li {:key (str "term-chooser-" x), :on-click #(rf/dispatch [:term-select x])} x])]))
 

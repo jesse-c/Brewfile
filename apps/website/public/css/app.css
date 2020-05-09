@@ -54,3 +54,7 @@ code {
 .notice span:nth-of-type(2) {
   font-size: 14px;
 }
+
+.term-chooser {}
+.term-chooser.focused { display: block; }
+.term-chooser.unfocused { display: none; }
