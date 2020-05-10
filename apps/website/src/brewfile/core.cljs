@@ -172,7 +172,7 @@
    [:div.templates-header
     [:h2 "Templates"]
     [:span.templates-header-count "(" (count brewfiles) ")"]
-    [:span [:a {:href "https://github.com/jesse-c/Brewfile"} "Add"]]]
+    [:span [:a {:href "https://github.com/jesse-c/Brewfile#templates"} "Add"]]]
    [:ul.templates-list
     (for [x brewfiles]
       [:li {:key (str "template-" x)} x])]])
