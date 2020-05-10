@@ -135,7 +135,7 @@
   [:a {:href @(rf/subscribe [:selected]),
        :class "generate-button"
        :role "button"}
-   "Generate"])
+   [:span "Generate"]])
 
 (defn code-inline
   [content]
@@ -169,18 +169,17 @@
 (defn templates
   []
   [:div
-   [:div
+   [:div.templates-header
     [:h2 "Templates"]
-    [:span (count brewfiles)]
+    [:span.templates-header-count "(" (count brewfiles) ")"]
     [:span [:a {:href "https://github.com/jesse-c/Brewfile"} "Add"]]]
-   [:div
-    [:ul
-     (for [x brewfiles]
-       [:li {:key (str "template-" x)} x])]]])
+   [:ul.templates-list
+    (for [x brewfiles]
+      [:li {:key (str "template-" x)} x])]])
 
 (defn instructions
   []
-  [:div
+  [:div.instructions
    [:h2 "Instructions"]
    [:ol
     [:li "Install " [:a {:href "https://www.brew.sh"} "Homebrew"]]
@@ -197,7 +196,7 @@
 
 (defn api
   []
-  [:div
+  [:div.api
    [:h2 "API"]
    [:table
     [:tbody
@@ -210,33 +209,37 @@
 
 (defn notes
   []
-  [:div
-   [:span "Thank you to the people behind Homebrew and Gitignore.io."]
-   [:span "View project source code."]])
+  [:div.notes
+   [:p [:span "Thank you to the people behind Homebrew and Gitignore.io."]]
+   [:p [:span 
+        "View project " 
+        [:a {:href "https://github.com/jesse-c/Brewfile"} "source code"] 
+        "."]]])
 
 (defn footer
   []
-  [:div
-   [:span [:a {:href "/#intro"} "↑ Top"]]
-   [:span [:a {:href (home-page-url)} "Jesse Claven"]]])
+  [:div.footer
+   [:div [:a.top {:href "/#intro"} "↑ Top"]]
+   [:div [:a.home {:href (home-page-url)} "Jesse Claven"]]])
 
 (defn ui
   []
   [:div
    [header]
    [notice]
-   [intro]
-   [search]
-   [:hr]
-   [templates]
-   [:hr]
-   [instructions]
-   [:hr]
-   [api]
-   [:hr]
-   [notes]
-   [:hr]
-   [footer]])
+   [:div.container
+     [intro]
+     [search]
+     [:hr]
+     [templates]
+     [:hr]
+     [instructions]
+     [:hr]
+     [api]
+     [:hr]
+     [notes]
+     [:hr]
+     [footer]]])
 
 ;; -- Entry Point -------------------------------------------------------------
 
