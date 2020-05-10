@@ -210,7 +210,7 @@
 (defn notes
   []
   [:div.notes
-   [:p [:span "Thank you to the people behind Homebrew and Gitignore.io."]]
+   [:p [:span "Thank you to the people behind " [:a {:href "https://brew.sh"} "Homebrew"] " and " [:a {:href "https://www.gitignore.io"} "Gitignore.io."]]]
    [:p [:span 
         "View project " 
         [:a {:href "https://github.com/jesse-c/Brewfile"} "source code"] 
