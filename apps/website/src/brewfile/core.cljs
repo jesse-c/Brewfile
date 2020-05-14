@@ -27,7 +27,8 @@
  (fn [_ _]
    {:term ""
     :selected []
-    :search-focused false}))
+    :search-focused false
+    :terms-focused false}))
 
 (rf/reg-event-db
  :term-change
@@ -60,6 +61,16 @@
  (fn [db _]
    (assoc db :search-focused false)))
 
+(rf/reg-event-db
+ :terms-focus
+ (fn [db _]
+   (assoc db :terms-focused true)))
+
+(rf/reg-event-db
+ :terms-unfocus
+ (fn [db _]
+   (assoc db :terms-focused false)))
+
 ;; -- Domino 4 - Query  -------------------------------------------------------
 
 
@@ -77,6 +88,11 @@
  :search-focused
  (fn [db _]
    (:search-focused db)))
+
+(rf/reg-sub
+ :terms-focused
+ (fn [db _]
+   (:terms-focused db)))
 
 ;; -- Domino 5 - View Functions ----------------------------------------------
 
@@ -103,9 +119,11 @@
         term @(rf/subscribe [:term])
         remaining (filterv #(str/includes? (str/lower-case %) (str/lower-case term))
                            (filterv #(not (seq-contains? selected %)) brewfiles))]
-    [:ul {:class (if @(rf/subscribe [:search-focused])
+    [:ul {:class (if (or @(rf/subscribe [:search-focused]) @(rf/subscribe [:terms-focused]))
                    "term-chooser focused"
-                   "term-chooser unfocused")}
+                   "term-chooser unfocused")
+          :on-mouse-leave #(rf/dispatch [:terms-unfocus])
+          :on-mouse-enter #(rf/dispatch [:terms-focus])}
      (if (> (count remaining) 0)
        (term-chooser-list remaining)
        (term-chooser-empty))]))
