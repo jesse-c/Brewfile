@@ -110,8 +110,7 @@ a:hover {
   font-weight: bold;
   font-size: 14px;
   border-radius: 3px;
-  background-color: #000000;
-  border: 1px solid #000000;
+  background-color: #0000F4;
   color: #FFFFFF;
   text-decoration: none;
   transition: background-color 0.2s linear;
@@ -124,9 +123,7 @@ a:hover {
 }
 
 .generate-button:hover {
-  background-color: #FFFFFF;
-  color: #000000;
-  border: 1px solid #000000;
+  background-color: #4040FF;
 }
 
 .selected {
