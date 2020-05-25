@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'roda'
-require 'SecureRandom'
+require 'securerandom'
 require_relative './lib/brewer/brewer'
 
 class App < Roda
