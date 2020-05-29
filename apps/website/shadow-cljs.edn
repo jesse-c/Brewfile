@@ -9,7 +9,8 @@
                                           :init-fn brewfile.core/init}}
 
                 :compiler-options
-                {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}
+                {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
+                 :source-map true}
 
                 :devtools         {:http-port 8021
                                    :http-root "public/"
