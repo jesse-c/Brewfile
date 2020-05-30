@@ -6,6 +6,7 @@ target/
 public/js/cljs-runtime/
 public/js/manifest.edn
 public/js/main.js
+package/
 .cpcache/
 .rebel_readline_history
 .lsp/sqlite.1.db

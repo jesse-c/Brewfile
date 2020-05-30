@@ -5,6 +5,7 @@
   "scripts": {
     "compile": "shadow-cljs compile app",
     "release": "shadow-cljs release app",
+    "package": "./package.sh",
     "watch": "shadow-cljs watch app",
     "start": "shadow-cljs server",
     "repl": "shadow-cljs cljs-repl app"
