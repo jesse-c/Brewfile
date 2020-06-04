@@ -1,11 +1,13 @@
 #!/bin/sh
 
+set -euo pipefail
+
+ts=$(date -u +"%Y%m%d%H%M%S")
 package_dir=package
-package_tar=package.tar.gz
+package_tar=package_$ts.tar.gz
 
 # Cleanup
 rm -rf $package_dir
-rm $package_tar
 
 # Setup
 mkdir $package_dir
@@ -24,3 +26,5 @@ cp ./public/js/main.{js,js.map} $package_dir/js
 
 # Bundle
 tar cvf $package_tar -C $package_dir .
+
+echo "Wrote package to $package_tar"
