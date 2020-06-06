@@ -148,10 +148,14 @@
               :on-click #(rf/dispatch [:term-unselect x])}
         x])]))
 
+(defn selected-to-href
+  [selected]
+  (str "/api/generate/" (str/join "," selected)))
+
 (defn generate-button
   []
-  [:a {:href @(rf/subscribe [:selected]),
-       :class "generate-button"
+  [:a {:href (selected-to-href @(rf/subscribe [:selected])),
+       :class "generate-button",
        :role "button"}
    [:span "Generate"]])
 
