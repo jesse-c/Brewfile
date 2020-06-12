@@ -10,3 +10,6 @@ task :run do
   sh "rerun -- puma --port 4000 config.ru"
 end
 
+task :serve do
+  sh "puma --port 4000 config.ru"
+end
