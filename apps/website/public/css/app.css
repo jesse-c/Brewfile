@@ -123,6 +123,7 @@ a:hover {
 }
 
 .generate-button:hover {
+  color: #FFFFFF;
   background-color: #4040FF;
 }
 
