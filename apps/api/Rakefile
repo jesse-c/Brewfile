@@ -7,9 +7,9 @@ Rake::TestTask.new do |t|
 end
 
 task :run do
-  sh "rerun -- puma --port 4000 config.ru"
+  sh "rerun -- puma -p 4000 config.ru"
 end
 
 task :serve do
-  sh "puma --port 4000 config.ru"
+  sh "puma -p 4000 -b 'unix:///usr/local/api/shared/sockets/puma.sock' config.ru"
 end
