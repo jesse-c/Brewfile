@@ -1,0 +1,5 @@
+AllCops:
+  Exclude:
+    - 'lib/homebrew-bundle/**/*'
+    - 'tmp/**/*'
+    - 'spec/**/*'
