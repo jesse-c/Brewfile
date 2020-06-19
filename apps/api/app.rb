@@ -27,6 +27,8 @@ class App < Roda
 
   route do |r|
     r.on 'api' do
+      response['Content-Type'] = 'text/plain'
+
       r.get 'list' do
         @@brewer.list
       end
