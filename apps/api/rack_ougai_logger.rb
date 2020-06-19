@@ -6,6 +6,7 @@ require 'ougai'
 
 module Rack
   module Ougai
+    # Set up the logger
     class Logger
       def initialize(app, level = ::Logger::INFO)
         @app = app
@@ -21,6 +22,7 @@ module Rack
       end
     end
 
+    # Log helpful info for each request
     class RequestLogger
       def initialize(app, logger = nil)
         @app = app
@@ -28,7 +30,7 @@ module Rack
       end
 
       def call(env)
-        status, headers, body = @app.call(env)
+        status, headers, _body = @app.call(env)
       ensure
         logger = @logger || env[RACK_LOGGER]
         logger.info('HTTP Request', create_log(env, status, headers))

@@ -1,4 +1,6 @@
-require "rake/testtask"
+# frozen_string_literal: true
+
+require 'rake/testtask'
 
 task default: :test
 
@@ -7,7 +9,7 @@ Rake::TestTask.new do |t|
 end
 
 task :run do
-  sh "rerun -- puma -p 4000 config.ru"
+  sh 'rerun -- puma -p 4000 config.ru'
 end
 
 task :serve do

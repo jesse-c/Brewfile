@@ -60,8 +60,8 @@ class Brewer
     end
   end
 
-  def strip_ext(f)
-    File.basename(f, File.extname(f))
+  def strip_ext(file)
+    File.basename(file, File.extname(file))
   end
 
   def filter(queries)

@@ -4,15 +4,15 @@ source 'https://rubygems.org'
 
 git_source(:github) { |brewfiles| "https://github.com/#{brewfiles}" }
 
-gem 'roda', '~> 3.31'
-gem 'rake', '~> 13.0'
-gem 'puma', '~> 4.3.5'
 gem 'ougai', '~> 1.8'
+gem 'puma', '~> 4.3.5'
 gem 'rack-request-id', '~> 0.0.4'
+gem 'rake', '~> 13.0'
+gem 'roda', '~> 3.31'
 
 group :development, :test do
-  gem 'rerun', '~> 0.13.0'
   gem 'rb-fsevent', '~> 0.10.3'
+  gem 'rerun', '~> 0.13.0'
 end
 
 group :development do

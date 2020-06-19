@@ -4,6 +4,7 @@ require 'roda'
 require 'securerandom'
 require_relative './lib/brewer/brewer'
 
+# An API for working with Brewfile templates
 class App < Roda
   plugin :not_found
   plugin :halt
