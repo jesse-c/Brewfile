@@ -27,7 +27,7 @@ class Brewer
   end
 
   def generate(queries)
-    sources = filter(queries)
+    sources = match(queries)
 
     names = sources.keys
                    .map { |path| strip_ext path.basename }
@@ -69,6 +69,14 @@ class Brewer
       path = strip_ext path.basename.to_s.downcase
 
       queries.any? { |query| path.include?(query.downcase) }
+    end
+  end
+
+  def match(queries)
+    @brewfiles.select do |path, _|
+      path = strip_ext path.basename.to_s.downcase
+
+      queries.any? { |query| path == query.downcase }
     end
   end
 
