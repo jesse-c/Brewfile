@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 git_source(:github) { |brewfiles| "https://github.com/#{brewfiles}" }
 
 gem 'ougai', '~> 1.8'
-gem 'puma', '~> 4.3.5'
+gem 'puma', '~> 4.3.8'
 gem 'rack-request-id', '~> 0.0.4'
 gem 'rake', '~> 13.0'
 gem 'roda', '~> 3.31'
