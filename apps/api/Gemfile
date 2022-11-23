@@ -4,11 +4,12 @@ source 'https://rubygems.org'
 
 git_source(:github) { |brewfiles| "https://github.com/#{brewfiles}" }
 
-gem 'ougai', '~> 1.8'
-gem 'puma', '~> 4.3.5'
-gem 'rack-request-id', '~> 0.0.4'
-gem 'rake', '~> 13.0'
-gem 'roda', '~> 3.31'
+gem 'puma', '~> 5.3'
+
+gem 'ougai', '~> 2.0'
+gem 'rack', '~> 2.2'
+gem 'rack-app', '~> 7.7'
+gem 'roda', '~> 3.62'
 
 group :development, :test do
   gem 'rb-fsevent', '~> 0.10.3'
@@ -16,7 +17,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 1.18'
 end
 
 group :test do

@@ -21,7 +21,7 @@ class App < Roda
   end
 
   not_found do
-    {}
+    ''
   end
 
   @@brewer = Brewer.new
