@@ -214,7 +214,7 @@
                     {:desc "Generate", :endpoint "generate/$t1,$t2,$tX", :method "GET"}
                     {:desc "Help", :endpoint "", :method "GET"}])
 
-(def base-endpoint "http://brewfile.io/api/")
+(def base-endpoint "https://brewfile.app/api/")
 
 (defn api
   []
