@@ -10,7 +10,7 @@ workers Integer(ENV['WEB_CONCURRENCY'] || 2)
 threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 5)
 threads threads_count, threads_count
 
-port        ENV['PORT']     || 9292
+port        ENV['PORT']     || 4010
 environment ENV['RACK_ENV'] || 'development'
 
 app_dir = File.expand_path('..', __dir__)
