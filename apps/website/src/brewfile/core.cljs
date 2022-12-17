@@ -100,7 +100,7 @@
 (def brewfiles
   ["Core" "DNS" "Dev-Go" "Dev-HTTP" "Neovim" "Privacy" "Python" "Vim"])
 
-(defn home-page-url [] "https://www.jesseclaven.com/")
+(defn home-page-url [] "https://www.j-e-s-s-e.com/")
 
 (defn term-chooser-list
   [remaining]
@@ -167,12 +167,6 @@
   []
   [:div.header
    [:span "A project by " [:a {:href (home-page-url)} "Jesse Claven"] "."]])
-
-(defn notice
-  []
-  [:div.notice
-   [:span "NEW!"]
-   [:span "Welcome to Brewfiles!"]])
 
 (defn intro
   []
@@ -248,7 +242,6 @@
   []
   [:div
    [header]
-   [notice]
    [:div.container
     [intro]
     [search]
