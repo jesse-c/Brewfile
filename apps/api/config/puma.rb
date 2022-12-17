@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'fileutils'
+
 on_worker_boot do
 end
 
@@ -14,10 +16,17 @@ port        ENV['PORT']     || 4010
 environment ENV['RACK_ENV'] || 'development'
 
 app_dir = File.expand_path('..', __dir__)
-shared_dir = "#{app_dir}/shared"
 
-pidfile "#{shared_dir}/pids/puma.pid"
+shared_dir = File.join(app_dir, "shared")
+pid_dir = File.join(app_dir, "pids")
+logs_dir = File.join(app_dir, "logs")
 
-stdout_redirect "#{shared_dir}/logs/puma.stdout.log", "#{shared_dir}/logs/puma.stderr.log", true
+FileUtils.mkdir_p(shared_dir)
+FileUtils.mkdir_p(pid_dir)
+FileUtils.mkdir_p(logs_dir)
+
+pidfile File.join(pid_dir, "puma.pid")
+
+stdout_redirect File.join(logs_dir, "puma.stdout.log"), File.join(logs_dir, "puma.stderr.log"), true
 
 preload_app!
