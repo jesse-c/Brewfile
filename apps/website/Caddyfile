@@ -1,0 +1,13 @@
+{
+    email jesse.claven@me.com
+    acme_ca https://acme-v02.api.letsencrypt.org/directory
+}
+
+localhost:80,
+localhost:443,
+brewfile.app,
+www.brewfile.app {
+  reverse_proxy /api/* api:4010
+  root * /srv
+  file_server
+}
