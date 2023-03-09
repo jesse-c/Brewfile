@@ -17,7 +17,7 @@ GEM
       ast (~> 2.4.1)
     puma (5.6.5)
       nio4r (~> 2.0)
-    rack (2.2.4)
+    rack (2.2.6.3)
     rack-app (7.7.0)
       rack
     rainbow (3.1.1)
