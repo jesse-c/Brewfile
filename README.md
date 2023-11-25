@@ -8,24 +8,34 @@ If you'd like to add/remove/update any templates, feel free to open a PR.
 
 ## Running locally
 
-### API
+### Build
+
+#### API
+
+From `apps/api`:
 
 ```
 cd apps/api
-docker build -t brewfile-api:1.0.0 .
+nixpacks build . --name brewfile-api
 ```
 
-### Website
+`$ docker run -e RACK_ENV=production -p 3000:3000 -it brewfile-api:latest`
+
+#### Website
+
+From `apps/website`:
 
 ```
-cd apps/website
 npm run release
 docker build -t brewfile-website:1.0.0 .
 ```
 
-### Both
+`$ docker run -p 5000:80 -it brewfile-website:latest`
+
+### Start
+
+From `apps`:
 
 ```
-cd apps
 docker-compose up
 ```

@@ -1,7 +1,7 @@
-FROM caddy:2.6.2
+FROM nginx:latest
 
-EXPOSE 80
-EXPOSE 443
+RUN rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf /usr/share/nginx/html
 
-COPY Caddyfile /etc/caddy/Caddyfile
-COPY public /srv
+COPY public /usr/share/nginx/html
+COPY nginx.conf /etc/nginx
+COPY default.conf.template /etc/nginx/templates/

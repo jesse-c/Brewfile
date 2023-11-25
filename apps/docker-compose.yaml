@@ -1,8 +1,19 @@
 version: '2'
 
 services:
-  web:
-    build: ./website
+  website:
+    image: brewfile-website:latest
+    ports:
+    - "8080:80"
+    environment:
+    - API_HOST=localhost
+    - API_PORT=3000
+
 
   api:
-    build: ./api
+    image: brewfile-api:latest
+    ports:
+    - "3000:3000"
+    environment:
+    - PORT=3000
+    - RACK_ENV=production
