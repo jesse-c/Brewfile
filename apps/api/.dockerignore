@@ -1,0 +1,6 @@
+# flyctl launch added from lib/homebrew-bundle/.gitignore
+lib/homebrew-bundle/**/Brewfile
+lib/homebrew-bundle/**/Brewfile.lock.json
+lib/homebrew-bundle/**/Gemfile.lock
+lib/homebrew-bundle/**/coverage
+fly.toml
