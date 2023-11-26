@@ -1,0 +1,2 @@
+[start]
+cmd = 'bundle exec rackup config.ru -o :: -p ${PORT:-3000}'
