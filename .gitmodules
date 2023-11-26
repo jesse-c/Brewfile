@@ -1,3 +1,0 @@
-[submodule "src/api/lib/homebrew-bundle"]
-	path = apps/api/lib/homebrew-bundle
-	url = git@github.com:Homebrew/homebrew-bundle.git
