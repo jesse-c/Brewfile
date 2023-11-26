@@ -24,7 +24,6 @@ nixpacks build . --name brewfile-api
 From `apps/website`:
 
 ```
-npm run release
 docker build -t brewfile-website:1.0.0 .
 ```
 
