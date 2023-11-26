@@ -19,8 +19,6 @@ cd apps/api
 nixpacks build . --name brewfile-api
 ```
 
-`$ docker run -e RACK_ENV=production -p 3000:3000 -it brewfile-api:latest`
-
 #### Website
 
 From `apps/website`:
@@ -29,8 +27,6 @@ From `apps/website`:
 npm run release
 docker build -t brewfile-website:1.0.0 .
 ```
-
-`$ docker run -p 5000:80 -it brewfile-website:latest`
 
 ### Start
 
