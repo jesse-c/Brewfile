@@ -171,8 +171,8 @@
 (defn intro
   []
   [:div
-   [:h1 {:name "intro"} "Brewfiles"]
-   [:p "Generate Brewfiles from existing templates."]])
+   [:h1 {:name "intro"} "Brewfile"]
+   [:p "Generate a Brewfile from existing templates."]])
 
 (defn search
   []
