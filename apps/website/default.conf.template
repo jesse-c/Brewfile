@@ -1,7 +1,7 @@
 server {
     listen       80;
     listen  [::]:80;
-    server_name  localhost;
+    server_name  0.0.0.0;
 
     #access_log  /var/log/nginx/host.access.log  main;
 
