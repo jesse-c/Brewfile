@@ -27,6 +27,11 @@ class App < Roda
   @@brewer = Brewer.new
 
   route do |r|
+    r.get 'health' do
+      response.status = 200
+      ''
+    end
+
     r.on 'api' do
       response['Content-Type'] = 'text/plain'
 
