@@ -14,13 +14,13 @@ describe Brewer do
     end
 
     it 'finds something' do
-      _(@brewer.search(%w[v Privacy])).must_equal %w[Neovim Dev-HTTP Dev-Go Privacy Vim Dev-All].join("\n")
+      _(@brewer.search(%w[v Privacy])).must_equal %w[Dev-Go Dev-HTTP Neovim Privacy Vim].join("\n")
     end
   end
 
   describe 'when listing' do
     it 'lists all brewfiles' do
-      _(@brewer.list).must_equal %w[All Neovim Dev-HTTP Python Dev-Go Privacy Vim DNS Dev-All Core].join("\n")
+      _(@brewer.list).must_equal %w[Core DNS Dev-Go Dev-HTTP Neovim Privacy Python Vim].join("\n")
     end
   end
 

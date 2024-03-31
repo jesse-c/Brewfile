@@ -30,6 +30,7 @@ GEM
       rack (>= 3)
       webrick (~> 1.8)
     rainbow (3.1.1)
+    rake (13.1.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -58,6 +59,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
+  x86_64-linux
 
 DEPENDENCIES
   minitest (~> 5.14)
@@ -65,6 +67,7 @@ DEPENDENCIES
   puma (~> 6.4)
   rack (~> 3.0)
   rack-app (~> 11.0)
+  rake (~> 13.0)
   rb-fsevent (~> 0.11.2)
   rerun (~> 0.13.0)
   roda (~> 3.62)
