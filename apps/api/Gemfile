@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |brewfiles| "https://github.com/#{brewfiles}" }
 
-gem 'puma', '~> 5.3'
+gem 'puma', '~> 6.4'
 
 gem 'ougai', '~> 2.0'
 gem 'rack', '~> 2.2'
