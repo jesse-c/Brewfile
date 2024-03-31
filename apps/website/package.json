@@ -1,7 +1,7 @@
 {
   "name": "website",
   "version": "0.0.1",
-  "description": "Test",
+  "description": "The webapp for Brewfile",
   "scripts": {
     "compile": "shadow-cljs compile app",
     "release": "shadow-cljs release app",
