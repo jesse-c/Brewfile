@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  api:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+        working-directory: ./apps/api
+    - name: Run tests
+      run: bundle exec rake test
+      working-directory: ./apps/api
+    - name: Run linting
+      run: bundle exec rubocop
+      working-directory: ./apps/api

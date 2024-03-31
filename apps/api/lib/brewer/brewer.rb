@@ -16,6 +16,7 @@ class Brewer
   def list
     @brewfiles.keys
               .map { |path| strip_ext path.basename }
+              .sort
               .join("\n")
   end
 
@@ -23,6 +24,7 @@ class Brewer
     filter(queries)
       .keys
       .map { |path| strip_ext path }
+      .sort
       .join("\n")
   end
 
@@ -33,6 +35,7 @@ class Brewer
 
     names = sources.keys
                    .map { |path| strip_ext path.basename }
+                   .sort
                    .join(', ')
                    .strip
 

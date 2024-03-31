@@ -12,6 +12,7 @@ gem 'rack-app', '~> 11.0'
 gem 'roda', '~> 3.62'
 
 group :development, :test do
+  gem 'rake', '~> 13.0'
   gem 'rb-fsevent', '~> 0.11.2'
   gem 'rerun', '~> 0.13.0'
 end
