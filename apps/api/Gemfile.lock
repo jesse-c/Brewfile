@@ -2,15 +2,17 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
-    ffi (1.15.5)
+    bigdecimal (3.1.7)
+    ffi (1.16.3)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
-    listen (3.7.1)
+    listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    minitest (5.16.3)
+    minitest (5.22.3)
     nio4r (2.7.1)
-    oj (3.13.23)
+    oj (3.16.3)
+      bigdecimal (>= 3.0)
     ougai (2.0.0)
       oj (~> 3.10)
     parallel (1.24.0)
@@ -35,7 +37,7 @@ GEM
     rerun (0.13.1)
       listen (~> 3.0)
     rexml (3.2.6)
-    roda (3.62.0)
+    roda (3.78.0)
       rack
     rubocop (1.62.1)
       json (~> 2.3)
@@ -55,7 +57,7 @@ GEM
     webrick (1.8.1)
 
 PLATFORMS
-  ruby
+  arm64-darwin-23
 
 DEPENDENCIES
   minitest (~> 5.14)
@@ -69,4 +71,4 @@ DEPENDENCIES
   rubocop (~> 1.62)
 
 BUNDLED WITH
-   1.17.2
+   2.5.7
