@@ -26,6 +26,8 @@ class Brewer
       .join("\n")
   end
 
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def generate(queries)
     sources = match(queries)
 
@@ -44,6 +46,8 @@ class Brewer
            .strip
            .prepend byline
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 
   def load_brewfiles(root_path)
     @paths = Dir.entries(root_path)
@@ -80,6 +84,8 @@ class Brewer
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def entry_to_s(entry)
     case entry.type
     when :brew
@@ -94,4 +100,6 @@ class Brewer
       raise "unknown entry type: #{entry.type}"
     end
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 end

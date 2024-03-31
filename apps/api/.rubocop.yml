@@ -1,5 +1,23 @@
 AllCops:
+  RubyInterpreters:
+    - ruby
+    - rake
+  Include:
+    - 'lib/brewer/**/*.rb'
+    - '*.gemfile'
+    - '*.gemspec'
+    - '**/*.rake'
+    - 'Gemfile'
+    - '**/Rakefile'
   Exclude:
     - 'lib/homebrew-bundle/**/*'
+    - 'node_modules/**/*'
     - 'tmp/**/*'
     - 'spec/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
+    - 'build/**/*'
+    - 'config/**/*'
+  DisplayCopNames: true
+  UseCache: false
+  SuggestExtensions: false
