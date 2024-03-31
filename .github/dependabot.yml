@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "bundler"
+    directory: "/apps/api"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "jesse-c"
+    assignees:
+      - "jesse-c"
+  - package-ecosystem: "npm"
+    directory: "/apps/website"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "jesse-c"
+    assignees:
+      - "jesse-c"
