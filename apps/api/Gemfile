@@ -7,7 +7,7 @@ git_source(:github) { |brewfiles| "https://github.com/#{brewfiles}" }
 gem 'puma', '~> 6.4'
 
 gem 'ougai', '~> 2.0'
-gem 'rack', '~> 2.2'
+gem 'rack', '~> 3.0'
 gem 'rack-app', '~> 8.0'
 gem 'roda', '~> 3.62'
 
