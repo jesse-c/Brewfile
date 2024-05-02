@@ -16,7 +16,7 @@ GEM
     ougai (2.0.0)
       oj (~> 3.10)
     parallel (1.24.0)
-    parser (3.3.0.5)
+    parser (3.3.1.0)
       ast (~> 2.4.1)
       racc
     puma (6.4.2)
@@ -40,7 +40,7 @@ GEM
     rexml (3.2.6)
     roda (3.78.0)
       rack
-    rubocop (1.63.0)
+    rubocop (1.63.4)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -51,8 +51,8 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.31.2)
-      parser (>= 3.3.0.4)
+    rubocop-ast (1.31.3)
+      parser (>= 3.3.1.0)
     ruby-progressbar (1.13.0)
     unicode-display_width (2.5.0)
     webrick (1.8.1)
