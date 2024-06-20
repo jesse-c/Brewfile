@@ -1,0 +1,52 @@
+version: 2.1
+
+executors:
+  clojure:
+    docker:
+      - image: circleci/clojure:openjdk-14-tools-deps-buster
+    working_directory: ~/Brewfile
+  ruby:
+    docker:
+      - image: circleci/ruby:2.7-buster
+    environment:
+      BUNDLE_PATH: vendor/bundle
+    working_directory: ~/Brewfile
+
+jobs:
+  clj:
+    executor: clojure
+    steps:
+      - checkout
+      - run:
+          command: clojure -R:test -Stree
+          name: Download dependencies
+          working_directory: apps/website
+      - run:
+          command: clojure -J-Xmx2g -A:test -R:test
+          name: Run tests
+          working_directory: apps/website
+  rb:
+    executor: ruby
+    steps:
+      - checkout
+      - run:
+          command: gem install bundler --version '~> 1.17.2'
+          name: Ensure correct bundler version is available
+      - run:
+          command: bundle check || bundle install
+          name: Download dependencies
+          working_directory: apps/api
+      - run:
+          command: bundle exec rubocop
+          name: Run tests
+          working_directory: apps/api
+      - run:
+          command: bundle exec rake test
+          name: Run tests
+          working_directory: apps/api
+
+workflows:
+  test:
+    jobs:
+      - clj
+      - rb
