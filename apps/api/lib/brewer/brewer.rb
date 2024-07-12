@@ -33,7 +33,7 @@ class Brewer
   # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
   def generate(queries)
-    sources = match(queries.sort)
+    sources = match(queries)
 
     names = sources.keys
                    .map { |path| strip_ext path.basename }
@@ -44,9 +44,9 @@ class Brewer
     byline = ['# brewfile.io', "# Generated from #{names}", '']
 
     brewfiles = sources.map { |_, b| b.entries }
-           .flatten
-           .sort_by { |a, _b| a.type == :tap ? -1 : 0 }
-           .map { |e| entry_to_s(e).strip }
+                       .flatten
+                       .map { |e| entry_to_s(e).strip }
+                       .sort
 
     byline + brewfiles
   end

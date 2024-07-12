@@ -36,7 +36,7 @@ describe Brewer do
 
   describe 'when generating' do
     it 'generates a combined brewfile' do
-      _(@brewer.generate(%w[Neovim Privacy])).must_equal ["# brewfile.io", "# Generated from Neovim, Privacy", "", "brew tap neovim/neovim", "brew install neovim", "brew install privoxy"]
+      _(@brewer.generate(%w[Neovim Privacy])).must_equal ["# brewfile.io", "# Generated from Neovim, Privacy", "", "brew install neovim", "brew install privoxy", "brew tap neovim/neovim"]
     end
   end
 
