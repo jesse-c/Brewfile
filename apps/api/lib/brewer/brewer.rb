@@ -13,11 +13,14 @@ class Brewer
     @brewfiles = load_brewfiles(DEFAULT_PATH)
   end
 
+  def present(brewfiles)
+    brewfiles.join("\n")
+  end
+
   def list
     @brewfiles.keys
               .map { |path| strip_ext path.basename }
               .sort
-              .join("\n")
   end
 
   def search(queries)
@@ -25,7 +28,6 @@ class Brewer
       .keys
       .map { |path| strip_ext path }
       .sort
-      .join("\n")
   end
 
   # rubocop:disable Metrics/MethodLength
@@ -39,15 +41,14 @@ class Brewer
                    .join(', ')
                    .strip
 
-    byline = "# brewfile.io\n# Generated from #{names}\n\n"
+    byline = ['# brewfile.io', "# Generated from #{names}", '']
 
-    sources.map { |_, b| b.entries }
-           .flatten
-           .sort_by { |a, _b| a.type == :tap ? -1 : 0 }
-           .map { |e| entry_to_s(e) }
-           .join("\n")
-           .strip
-           .prepend byline
+    brewfiles = sources.map { |_, b| b.entries }
+                       .flatten
+                       .map { |e| entry_to_s(e).strip }
+                       .sort
+
+    byline + brewfiles
   end
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/AbcSize
