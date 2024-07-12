@@ -24,11 +24,12 @@ class App < Roda
     ''
   end
 
-  @@brewer = Brewer.new
+  brewer = Brewer.new
 
   route do |r|
     r.get 'health' do
       response.status = 200
+
       ''
     end
 
@@ -36,15 +37,15 @@ class App < Roda
       response['Content-Type'] = 'text/plain'
 
       r.get 'list' do
-        @@brewer.present(@@brewer.list)
+        brewer.present(brewer.list)
       end
 
       r.get 'search', String do |query|
         queries = query.split(',')
 
-        results = @@brewer.search(queries)
+        results = brewer.search(queries)
 
-        @@brewer.present(results)
+        brewer.present(results)
       end
 
       r.get 'generate', String do |query|
@@ -52,9 +53,9 @@ class App < Roda
 
         r.halt(400, { errors: ['Need ≥ 1 Brewfile names'] }) if queries.empty?
 
-        results = @@brewer.generate(queries)
+        results = brewer.generate(queries)
 
-        @@brewer.present(results)
+        brewer.present(results)
       end
 
       r.get 'generate' do
