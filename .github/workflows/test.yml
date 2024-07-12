@@ -25,3 +25,30 @@ jobs:
     - name: Run tests
       run: bundle exec rake test
       working-directory: ./apps/api
+
+  website:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+        cache-dependency-path: ./apps/website/package-lock.json
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+    - name: Set up Clojure
+      uses: DeLaGuardo/setup-clojure@12.5
+      with:
+        cli: 1.10.1.693
+        boot: 2.8.3
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./apps/website
+    - name: Compile
+      run: npm run compile
+      working-directory: ./apps/website
