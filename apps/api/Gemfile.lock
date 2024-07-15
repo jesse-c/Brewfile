@@ -16,7 +16,7 @@ GEM
     ougai (2.0.0)
       oj (~> 3.10)
     parallel (1.25.1)
-    parser (3.3.3.0)
+    parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
     puma (6.4.2)
@@ -37,17 +37,17 @@ GEM
     regexp_parser (2.9.2)
     rerun (0.14.0)
       listen (~> 3.0)
-    rexml (3.3.0)
+    rexml (3.3.1)
       strscan
     roda (3.81.0)
       rack
-    rubocop (1.64.1)
+    rubocop (1.65.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
+      regexp_parser (>= 2.4, < 3.0)
       rexml (>= 3.2.5, < 4.0)
       rubocop-ast (>= 1.31.1, < 2.0)
       ruby-progressbar (~> 1.7)
@@ -73,7 +73,7 @@ DEPENDENCIES
   rb-fsevent (~> 0.11.2)
   rerun (~> 0.14.0)
   roda (~> 3.81)
-  rubocop (~> 1.64)
+  rubocop (~> 1.65)
 
 BUNDLED WITH
    2.5.7
