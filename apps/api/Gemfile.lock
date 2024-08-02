@@ -37,7 +37,7 @@ GEM
     regexp_parser (2.9.2)
     rerun (0.14.0)
       listen (~> 3.0)
-    rexml (3.3.2)
+    rexml (3.3.3)
       strscan
     roda (3.82.0)
       rack
