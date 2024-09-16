@@ -39,7 +39,7 @@ GEM
       listen (~> 3.0)
     rexml (3.3.6)
       strscan
-    roda (3.83.0)
+    roda (3.84.0)
       rack
     rubocop (1.65.1)
       json (~> 2.3)
@@ -72,7 +72,7 @@ DEPENDENCIES
   rake (~> 13.2)
   rb-fsevent (~> 0.11.2)
   rerun (~> 0.14.0)
-  roda (~> 3.83)
+  roda (~> 3.84)
   rubocop (~> 1.65)
 
 BUNDLED WITH
