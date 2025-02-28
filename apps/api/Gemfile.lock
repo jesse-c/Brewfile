@@ -11,7 +11,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     minitest (5.25.4)
-    nio4r (2.7.3)
+    nio4r (2.7.4)
     oj (3.16.3)
       bigdecimal (>= 3.0)
     ougai (2.0.0)
@@ -20,7 +20,7 @@ GEM
     parser (3.3.7.1)
       ast (~> 2.4.1)
       racc
-    puma (6.4.3)
+    puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.8)
@@ -66,7 +66,7 @@ PLATFORMS
 DEPENDENCIES
   minitest (~> 5.25)
   ougai (~> 2.0)
-  puma (~> 6.4)
+  puma (~> 6.6)
   rack (~> 3.1)
   rack-app (~> 11.0)
   rake (~> 13.2)
