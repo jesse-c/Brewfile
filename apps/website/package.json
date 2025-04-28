@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "devDependencies": {
-    "shadow-cljs": "^2.28.23"
+    "shadow-cljs": "^3.0.3"
   },
   "license": "MIT",
   "dependencies": {
