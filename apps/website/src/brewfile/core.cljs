@@ -1,7 +1,12 @@
 (ns brewfile.core
-  (:require [reagent.dom :as reagent]
-            [re-frame.core :as rf]
-            [clojure.string :as str]))
+  (:require
+   ;; Separate reagent.dom and reagent.core for clarity
+   [reagent.dom :as reagent-dom]  ;; DOM-specific functions
+   [reagent.core :as reagent]     ;; Core reagent functions like as-element
+   [re-frame.core :as rf]
+   [clojure.string :as str]
+   ;; Import the createRoot API from react-dom/client for React 18+ compatibility
+   ["react-dom/client" :as react-dom-client]))
 
 
 ;; -- Debugging aids ----------------------------------------------------------
@@ -258,10 +263,23 @@
 
 ;; -- Entry Point -------------------------------------------------------------
 
+;; Store the React root instance to ensure we only create it once
+;; This follows React 18+ best practices for rendering
+(defonce root-atom (atom nil))
+
 (defn render
   []
-  (reagent/render [ui]
-                  (js/document.getElementById "app")))
+  (if @root-atom
+    ;; If root already exists, just update the content
+    (.render @root-atom (reagent/as-element [ui]))
+    ;; First render - create new root using React 18+ createRoot API
+    ;; This replaces the deprecated ReactDOM.render method used in React <18
+    (reset! root-atom (-> js/document
+                          (.getElementById "app")
+                          ;; Use createRoot from react-dom/client (React 18+ API)
+                          (react-dom-client/createRoot)
+                          ;; Immediately render our UI component
+                          (doto (.render (reagent/as-element [ui])))))))
 
 (defn ^:dev/after-load clear-cache-and-render!
   []
