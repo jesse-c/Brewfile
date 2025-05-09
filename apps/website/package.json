@@ -8,7 +8,9 @@
     "package": "./package.sh",
     "watch": "shadow-cljs watch app",
     "start": "shadow-cljs server",
-    "repl": "shadow-cljs cljs-repl app"
+    "repl": "shadow-cljs cljs-repl app",
+    "test": "shadow-cljs compile test && shadow-cljs watch test",
+    "test:once": "shadow-cljs compile test"
   },
   "keywords": [],
   "devDependencies": {

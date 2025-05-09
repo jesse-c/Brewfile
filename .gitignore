@@ -83,3 +83,8 @@ build-iPhoneSimulator/
 /.lsp/
 /.cache/
 /.clj-kondo/
+
+**/.claude/settings.local.json
+/apps/website/.clj-kondo/
+/apps/website/.lsp/
+/apps/website/public/js/test/

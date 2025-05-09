@@ -1,7 +1,7 @@
 default: all
 
 .PHONY: all
-all: build run
+all: build test run
 
 .PHONY: build-api
 build-api:
@@ -21,3 +21,16 @@ run:
 	cd apps && \
     docker compose up -d && \
 		open http://localhost:8080
+
+.PHONY: test-website
+test-website:
+	cd apps/website && \
+		npm run test:once
+
+.PHONY: test-website-watch
+test-website-watch:
+	cd apps/website && \
+		npm run test
+
+.PHONY: test
+test: test-website

@@ -15,5 +15,14 @@
                 :devtools         {:http-port 8021
                                    :http-root "public/"
                                    :after-load brewfile.core/clear-cache-and-render!
-                                   :preloads [re-frisk.preload]}}}}
+                                   :preloads [re-frisk.preload]}}
+
+         :test {:target           :browser-test
+                :test-dir         "public/js/test"
+                :ns-regexp        "-test$"
+                :runner-ns        brewfile.test-runner
+                :compiler-options {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
+                                  :source-map true}
+                :devtools         {:http-port 8022
+                                  :http-root "public/js/test"}}}}
 
