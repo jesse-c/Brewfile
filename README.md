@@ -14,4 +14,4 @@ If you'd like to add/remove/update any templates, feel free to open a PR.
 
 ### Run
 
-`$ make run` then open http://localhost:8080
+`$ make run`
