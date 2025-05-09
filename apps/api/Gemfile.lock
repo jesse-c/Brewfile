@@ -28,6 +28,8 @@ GEM
     rack-app (11.0.2)
       rack (>= 3.0.0)
       rackup
+    rack-test (2.2.0)
+      rack (>= 1.3)
     rackup (2.1.0)
       rack (>= 3)
       webrick (~> 1.8)
@@ -63,6 +65,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
+  arm64-darwin-24
   x86_64-linux
 
 DEPENDENCIES
@@ -71,6 +74,7 @@ DEPENDENCIES
   puma (~> 6.6)
   rack (~> 3.1)
   rack-app (~> 11.0)
+  rack-test (~> 2.1)
   rake (~> 13.2)
   rb-fsevent (~> 0.11.2)
   rerun (~> 0.14.0)

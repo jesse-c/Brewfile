@@ -22,6 +22,16 @@ run:
     docker compose up -d && \
 		open http://localhost:8080
 
+.PHONY: test-api
+test-api:
+	cd apps/api && \
+		bundle exec rake test
+
+.PHONY: test-api-verbose
+test-api-verbose:
+	cd apps/api && \
+		bundle exec rake test_verbose
+
 .PHONY: test-website
 test-website:
 	cd apps/website && \
@@ -33,4 +43,4 @@ test-website-watch:
 		npm run test
 
 .PHONY: test
-test: test-website
+test: test-api test-website

@@ -7,6 +7,12 @@ task default: :test
 
 Rake::TestTask.new do |t|
   t.test_files = FileList['spec/**/*_spec.rb']
+  t.verbose = false
+end
+
+Rake::TestTask.new(:test_verbose) do |t|
+  t.test_files = FileList['spec/**/*_spec.rb']
+  t.verbose = true
 end
 
 RuboCop::RakeTask.new(:lint)

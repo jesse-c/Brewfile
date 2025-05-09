@@ -20,12 +20,27 @@ If you'd like to add/remove/update any templates, feel free to open a PR.
 
 ### Testing
 
-Run tests once:
+Run all tests:
 ```
 $ make test
 ```
 
-Run tests in watch mode (for development):
+Run only API tests:
+```
+$ make test-api
+```
+
+Run API tests with verbose output:
+```
+$ make test-api-verbose
+```
+
+Run only website tests:
+```
+$ make test-website
+```
+
+Run website tests in watch mode (for development):
 ```
 $ make test-website-watch
 ```

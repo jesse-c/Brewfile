@@ -51,7 +51,11 @@ class App < Roda
       r.get 'generate', String do |query|
         queries = query.split(',')
 
-        r.halt(400, { errors: ['Need ≥ 1 Brewfile names'] }) if queries.empty?
+        if queries.empty?
+          response.status = 400
+          response['Content-Type'] = 'application/json'
+          return '{"errors":["Need ≥ 1 Brewfile names"]}'
+        end
 
         results = brewer.generate(queries)
 
@@ -59,11 +63,15 @@ class App < Roda
       end
 
       r.get 'generate' do
-        r.halt(400, { errors: ['Need ≥ 1 Brewfile names'] })
+        response.status = 400
+        response['Content-Type'] = 'application/json'
+        return '{"errors":["Need ≥ 1 Brewfile names"]}'
       end
 
       r.get 'generate/' do
-        r.halt(400, { errors: ['Need ≥ 1 Brewfile names'] })
+        response.status = 400
+        response['Content-Type'] = 'application/json'
+        return '{"errors":["Need ≥ 1 Brewfile names"]}'
       end
     end
   end
