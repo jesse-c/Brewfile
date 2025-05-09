@@ -78,4 +78,8 @@ build-iPhoneSimulator/
 # .ruby-gemset
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+
 .rvmrc
+/.lsp/
+/.cache/
+/.clj-kondo/
