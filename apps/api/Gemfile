@@ -9,7 +9,7 @@ gem 'puma', '~> 6.6'
 gem 'ougai', '~> 2.0'
 gem 'rack', '~> 3.1'
 gem 'rack-app', '~> 11.0'
-gem 'roda', '~> 3.94'
+gem 'roda', '~> 3.95'
 
 group :development, :test do
   gem 'rake', '~> 13.3'
