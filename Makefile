@@ -44,3 +44,11 @@ test-website-watch:
 
 .PHONY: test
 test: test-api test-website
+
+.PHONY: lint
+lint: lint-api
+
+.PHONY: lint-api
+lint-api:
+	cd apps/api && \
+		bundle exec rake lint
