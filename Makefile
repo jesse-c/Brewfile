@@ -16,11 +16,16 @@ build-website:
 .PHONY: build
 build: build-api build-website
 
-.PHONY: run
+.PHONY: run-images
 run:
 	cd apps && \
     docker compose up -d && \
 		open http://localhost:8080
+
+.PHONY: run-api
+run-api:
+	cd apps/api && \
+		bundle exec rackup config.ru -o :: -p 3000
 
 .PHONY: test-api
 test-api:
