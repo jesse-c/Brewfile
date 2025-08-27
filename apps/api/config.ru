@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require './app'
+require "./app"
 
-require_relative 'rack_ougai_logger'
+require_relative "rack_ougai_logger"
 
 use Rack::Ougai::Logger
 use Rack::Ougai::RequestLogger

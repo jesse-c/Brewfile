@@ -1,24 +1,44 @@
 # frozen_string_literal: true
 
-require 'rake/testtask'
-require 'rubocop/rake_task'
+require "rake/testtask"
+require "rubocop/rake_task"
 
 task default: :test
 
 Rake::TestTask.new do |t|
-  t.test_files = FileList['spec/**/*_spec.rb']
+  t.test_files = FileList["spec/**/*_spec.rb"]
   t.verbose = false
 end
 
 Rake::TestTask.new(:test_verbose) do |t|
-  t.test_files = FileList['spec/**/*_spec.rb']
+  t.test_files = FileList["spec/**/*_spec.rb"]
   t.verbose = true
 end
 
-RuboCop::RakeTask.new(:lint)
+RuboCop::RakeTask.new(:rubocop)
+
+desc "Format code with rufo"
+task :format do
+  sh "rufo ."
+end
+
+desc "Auto-fix code issues with rufo and rubocop"
+task :fix do
+  sh "rufo ."
+  sh "rubocop --autocorrect-all --except Layout,Style"
+end
+
+desc "Check code formatting and style violations"
+task :check do
+  sh "rufo --check ."
+  sh "rubocop --except Layout,Style"
+end
+
+desc "Run linting and formatting"
+task lint: %i[format fix]
 
 task :run do
-  sh 'rerun -- puma -p 3000 config.ru'
+  sh "rerun -- puma -p 3000 config.ru"
 end
 
 task :serve do

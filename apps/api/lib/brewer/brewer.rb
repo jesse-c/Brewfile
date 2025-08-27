@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-require 'pathname'
-require_relative '../homebrew-bundle/lib/bundle/dsl'
+require "pathname"
+require_relative "../homebrew-bundle/lib/bundle/dsl"
 
 # Brewer operates on a collection of Brewfiles, allowing you to list, search,
 # and generate new ones.
 class Brewer
-  EXTENSION = '.brewfile'
-  DEFAULT_PATH = Pathname.new('./lib/brewfiles/')
+  EXTENSION = ".brewfile"
+  DEFAULT_PATH = Pathname.new("./lib/brewfiles/")
 
   def initialize
     @brewfiles = load_brewfiles(DEFAULT_PATH)
   end
 
-  def present(brewfiles, format = 'text')
+  def present(brewfiles, format = "text")
     case format
-    when 'json'
-      require 'json'
+    when "json"
+      require "json"
       brewfiles.to_json
     else
       brewfiles.join("\n")
@@ -44,10 +44,10 @@ class Brewer
     names = sources.keys
                    .map { |path| strip_ext path.basename }
                    .sort
-                   .join(', ')
+                   .join(", ")
                    .strip
 
-    byline = ['# brewfile.io', "# Generated from #{names}", '']
+    byline = ["# brewfile.io", "# Generated from #{names}", ""]
 
     brewfiles = sources.map { |_, b| b.entries }
                        .flatten
@@ -56,6 +56,7 @@ class Brewer
 
     byline + brewfiles
   end
+
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/AbcSize
 
@@ -66,9 +67,9 @@ class Brewer
 
     @paths.each_with_object({}) do |path, collection|
       content = root_path
-                .join(path)
-                .expand_path
-                .read
+        .join(path)
+        .expand_path
+        .read
 
       collection[path] = Bundle::Dsl.new(content)
     end
@@ -99,9 +100,9 @@ class Brewer
   def entry_to_s(entry)
     case entry.type
     when :brew
-      "brew install #{entry.name} #{entry.options.fetch(:args, []).map { |arg| "--#{arg}" }.join(' ')}"
+      "brew install #{entry.name} #{entry.options.fetch(:args, []).map { |arg| "--#{arg}" }.join(" ")}"
     when :cask
-      "brew cask install #{entry.name} #{entry.options.fetch(:args, []).map { |arg| "--#{arg}" }.join(' ')}"
+      "brew cask install #{entry.name} #{entry.options.fetch(:args, []).map { |arg| "--#{arg}" }.join(" ")}"
     when :mac_app_store
       "mas install #{entry.options[:id]}"
     when :tap
@@ -110,6 +111,7 @@ class Brewer
       raise "unknown entry type: #{entry.type}"
     end
   end
+
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/AbcSize
 end
