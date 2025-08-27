@@ -9,6 +9,7 @@ class App < Roda
   plugin :not_found
   plugin :halt
   plugin :hooks
+  plugin :type_routing
 
   before do
     @time = Time.now
@@ -34,10 +35,11 @@ class App < Roda
     end
 
     r.on 'api' do
-      response['Content-Type'] = 'text/plain'
-
       r.get 'list' do
-        brewer.present(brewer.list)
+        results = brewer.list
+        r.json { brewer.present(results, 'json') }
+        response['Content-Type'] = 'text/plain'
+        brewer.present(results)
       end
 
       r.on 'search' do
@@ -46,19 +48,22 @@ class App < Roda
 
           if queries.empty?
             response.status = 400
-            response['Content-Type'] = 'application/json'
-            return '{"errors":["Need ≥ 1 Brewfile names"]}'
+            r.json { '{"errors":["Need ≥ 1 Brewfile names"]}' }
+            response['Content-Type'] = 'text/plain'
+            return "Need ≥ 1 Brewfile names"
           end
 
           results = brewer.search(queries)
-
+          r.json { brewer.present(results, 'json') }
+          response['Content-Type'] = 'text/plain'
           brewer.present(results)
         end
 
         r.get do
           response.status = 400
-          response['Content-Type'] = 'application/json'
-          '{"errors":["Need ≥ 1 Brewfile names"]}'
+          r.json { '{"errors":["Need ≥ 1 Brewfile names"]}' }
+          response['Content-Type'] = 'text/plain'
+          "Need ≥ 1 Brewfile names"
         end
       end
 
@@ -68,19 +73,22 @@ class App < Roda
 
           if queries.empty?
             response.status = 400
-            response['Content-Type'] = 'application/json'
-            return '{"errors":["Need ≥ 1 Brewfile names"]}'
+            r.json { '{"errors":["Need ≥ 1 Brewfile names"]}' }
+            response['Content-Type'] = 'text/plain'
+            return "Need ≥ 1 Brewfile names"
           end
 
           results = brewer.generate(queries)
-
+          r.json { brewer.present(results, 'json') }
+          response['Content-Type'] = 'text/plain'
           brewer.present(results)
         end
 
         r.get do
           response.status = 400
-          response['Content-Type'] = 'application/json'
-          '{"errors":["Need ≥ 1 Brewfile names"]}'
+          r.json { '{"errors":["Need ≥ 1 Brewfile names"]}' }
+          response['Content-Type'] = 'text/plain'
+          "Need ≥ 1 Brewfile names"
         end
       end
     end

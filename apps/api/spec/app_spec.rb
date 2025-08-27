@@ -2,6 +2,7 @@
 
 require 'minitest/autorun'
 require 'rack/test'
+require 'json'
 require './app'
 
 describe App do
@@ -21,20 +22,34 @@ describe App do
 
   describe 'API endpoints' do
     describe 'when listing brewfiles' do
-      it 'returns a list of all brewfiles' do
+      it 'returns a list of all brewfiles as text by default' do
         get '/api/list'
         _(last_response.status).must_equal 200
         _(last_response.body).must_equal "Core\nDNS\nDev-Go\nDev-HTTP\nNeovim\nPrivacy\nPython\nVim"
         _(last_response.content_type).must_equal 'text/plain'
       end
+
+      it 'returns a list of all brewfiles as JSON when requested' do
+        get '/api/list', {}, { 'HTTP_ACCEPT' => 'application/json' }
+        _(last_response.status).must_equal 200
+        _(JSON.parse(last_response.body)).must_equal ["Core", "DNS", "Dev-Go", "Dev-HTTP", "Neovim", "Privacy", "Python", "Vim"]
+        _(last_response.content_type).must_equal 'application/json'
+      end
     end
 
     describe 'when searching brewfiles' do
-      it 'returns matching brewfiles' do
+      it 'returns matching brewfiles as text by default' do
         get '/api/search/go'
         _(last_response.status).must_equal 200
         _(last_response.body).must_equal "Dev-Go"
         _(last_response.content_type).must_equal 'text/plain'
+      end
+
+      it 'returns matching brewfiles as JSON when requested' do
+        get '/api/search/go', {}, { 'HTTP_ACCEPT' => 'application/json' }
+        _(last_response.status).must_equal 200
+        _(JSON.parse(last_response.body)).must_equal ["Dev-Go"]
+        _(last_response.content_type).must_equal 'application/json'
       end
 
       it 'returns empty string when no matches' do
@@ -42,6 +57,13 @@ describe App do
         _(last_response.status).must_equal 200
         _(last_response.body).must_equal ""
         _(last_response.content_type).must_equal 'text/plain'
+      end
+
+      it 'returns empty array as JSON when no matches' do
+        get '/api/search/nonexistent', {}, { 'HTTP_ACCEPT' => 'application/json' }
+        _(last_response.status).must_equal 200
+        _(JSON.parse(last_response.body)).must_equal []
+        _(last_response.content_type).must_equal 'application/json'
       end
 
       it 'supports multiple search terms' do
@@ -58,13 +80,13 @@ describe App do
       it 'returns 400 when no query parameter provided' do
         get '/api/search/'
         _(last_response.status).must_equal 400
-        _(last_response.body).must_equal '{"errors":["Need ≥ 1 Brewfile names"]}'
-        _(last_response.content_type).must_equal 'application/json'
+        _(last_response.body).must_equal "Need ≥ 1 Brewfile names"
+        _(last_response.content_type).must_equal 'text/plain'
 
         get '/api/search'
         _(last_response.status).must_equal 400
-        _(last_response.body).must_equal '{"errors":["Need ≥ 1 Brewfile names"]}'
-        _(last_response.content_type).must_equal 'application/json'
+        _(last_response.body).must_equal "Need ≥ 1 Brewfile names"
+        _(last_response.content_type).must_equal 'text/plain'
       end
     end
 
@@ -83,11 +105,13 @@ describe App do
       it 'returns 400 when no brewfile names provided' do
         get '/api/generate/'
         _(last_response.status).must_equal 400
-        _(last_response.body).must_equal '{"errors":["Need ≥ 1 Brewfile names"]}'
+        _(last_response.body).must_equal "Need ≥ 1 Brewfile names"
+        _(last_response.content_type).must_equal 'text/plain'
 
         get '/api/generate'
         _(last_response.status).must_equal 400
-        _(last_response.body).must_equal '{"errors":["Need ≥ 1 Brewfile names"]}'
+        _(last_response.body).must_equal "Need ≥ 1 Brewfile names"
+        _(last_response.content_type).must_equal 'text/plain'
       end
 
       it 'returns empty string when brewfile not found' do

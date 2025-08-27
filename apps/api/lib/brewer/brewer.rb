@@ -13,8 +13,14 @@ class Brewer
     @brewfiles = load_brewfiles(DEFAULT_PATH)
   end
 
-  def present(brewfiles)
-    brewfiles.join("\n")
+  def present(brewfiles, format = 'text')
+    case format
+    when 'json'
+      require 'json'
+      brewfiles.to_json
+    else
+      brewfiles.join("\n")
+    end
   end
 
   def list
