@@ -16,8 +16,11 @@ build-website:
 .PHONY: build
 build: build-api build-website
 
+.PHONY: run
+run: run-images
+
 .PHONY: run-images
-run:
+run-images:
 	cd apps && \
     docker compose up -d && \
 		open http://localhost:8080
