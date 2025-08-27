@@ -1,5 +1,3 @@
-version: '2'
-
 services:
   website:
     image: brewfile-website:latest
