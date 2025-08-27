@@ -30,6 +30,14 @@ run-api:
 	cd apps/api && \
 		bundle exec rackup config.ru -o :: -p 3000
 
+.PHONY: stop
+stop: stop-images
+
+.PHONY: stop-images
+stop-images:
+	cd apps && \
+    docker compose down
+
 .PHONY: test-api
 test-api:
 	cd apps/api && \
