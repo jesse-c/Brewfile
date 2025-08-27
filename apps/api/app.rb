@@ -40,38 +40,48 @@ class App < Roda
         brewer.present(brewer.list)
       end
 
-      r.get 'search', String do |query|
-        queries = query.split(',')
+      r.on 'search' do
+        r.get String do |query|
+          queries = query.split(',')
 
-        results = brewer.search(queries)
+          if queries.empty?
+            response.status = 400
+            response['Content-Type'] = 'application/json'
+            return '{"errors":["Need ≥ 1 Brewfile names"]}'
+          end
 
-        brewer.present(results)
-      end
+          results = brewer.search(queries)
 
-      r.get 'generate', String do |query|
-        queries = query.split(',')
-
-        if queries.empty?
-          response.status = 400
-          response['Content-Type'] = 'application/json'
-          return '{"errors":["Need ≥ 1 Brewfile names"]}'
+          brewer.present(results)
         end
 
-        results = brewer.generate(queries)
-
-        brewer.present(results)
+        r.get do
+          response.status = 400
+          response['Content-Type'] = 'application/json'
+          '{"errors":["Need ≥ 1 Brewfile names"]}'
+        end
       end
 
-      r.get 'generate' do
-        response.status = 400
-        response['Content-Type'] = 'application/json'
-        return '{"errors":["Need ≥ 1 Brewfile names"]}'
-      end
+      r.on 'generate' do
+        r.get String do |query|
+          queries = query.split(',')
 
-      r.get 'generate/' do
-        response.status = 400
-        response['Content-Type'] = 'application/json'
-        return '{"errors":["Need ≥ 1 Brewfile names"]}'
+          if queries.empty?
+            response.status = 400
+            response['Content-Type'] = 'application/json'
+            return '{"errors":["Need ≥ 1 Brewfile names"]}'
+          end
+
+          results = brewer.generate(queries)
+
+          brewer.present(results)
+        end
+
+        r.get do
+          response.status = 400
+          response['Content-Type'] = 'application/json'
+          '{"errors":["Need ≥ 1 Brewfile names"]}'
+        end
       end
     end
   end

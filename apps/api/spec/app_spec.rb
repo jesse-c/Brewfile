@@ -54,6 +54,18 @@ describe App do
         _(last_response.body).must_include "Vim"
         _(last_response.content_type).must_equal 'text/plain'
       end
+
+      it 'returns 400 when no query parameter provided' do
+        get '/api/search/'
+        _(last_response.status).must_equal 400
+        _(last_response.body).must_equal '{"errors":["Need ≥ 1 Brewfile names"]}'
+        _(last_response.content_type).must_equal 'application/json'
+
+        get '/api/search'
+        _(last_response.status).must_equal 400
+        _(last_response.body).must_equal '{"errors":["Need ≥ 1 Brewfile names"]}'
+        _(last_response.content_type).must_equal 'application/json'
+      end
     end
 
     describe 'when generating brewfiles' do
