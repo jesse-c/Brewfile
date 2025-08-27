@@ -155,7 +155,7 @@
 
 (defn selected-to-href
   [selected]
-  (str "/api/generate/" (str/join "," selected)))
+  (str "/api/generate/" (str/join "," selected) ".txt"))
 
 (defn generate-button
   []
@@ -208,10 +208,9 @@
     [:li "Generate a Brewfile and place it in your " (code-inline "$HOME")]
     [:li "Run " (code-inline "brew bundle")]]])
 
-(def api-endpoints [{:desc "List all", :endpoint "list/$t1,$t2,$tX", :method "GET"}
-                    {:desc "Search", :endpoint "search/$t1,$t2,$tX", :method "GET"}
-                    {:desc "Generate", :endpoint "generate/$t1,$t2,$tX", :method "GET"}
-                    {:desc "Help", :endpoint "", :method "GET"}])
+(def api-endpoints [{:desc "List all", :endpoint "list.txt", :method "GET"}
+                    {:desc "Search", :endpoint "search/$t1,$t2,$tX.txt", :method "GET"}
+                    {:desc "Generate", :endpoint "generate/$t1,$t2,$tX.txt", :method "GET"}])
 
 (def base-endpoint "https://brewfile.app/api/")
 

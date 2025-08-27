@@ -122,11 +122,11 @@
   (rf-test/run-test-sync
    (testing "generate-button has correct href when no selection"
      (let [html (component-to-string (core/generate-button))]
-       (is (str/includes? html "href=\"/api/generate/\"")))))
+       (is (str/includes? html "href=\"/api/generate/.txt\"")))))
   
   (rf-test/run-test-sync
    (rf/dispatch [:term-select "Core"])
    (rf/dispatch [:term-select "DNS"])
    (testing "generate-button href updates with selection"
      (let [html (component-to-string (core/generate-button))]
-       (is (str/includes? html "href=\"/api/generate/Core,DNS\""))))))
+       (is (str/includes? html "href=\"/api/generate/Core,DNS.txt\""))))))

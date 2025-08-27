@@ -38,12 +38,12 @@
 
 (deftest selected-to-href-test
   (testing "selected-to-href creates correct URL"
-    (is (= "/api/generate/Core" (core/selected-to-href ["Core"])))
-    (is (= "/api/generate/Core,DNS" (core/selected-to-href ["Core" "DNS"])))
-    (is (= "/api/generate/Core,DNS,Python" (core/selected-to-href ["Core" "DNS" "Python"]))))
+    (is (= "/api/generate/Core.txt" (core/selected-to-href ["Core"])))
+    (is (= "/api/generate/Core,DNS.txt" (core/selected-to-href ["Core" "DNS"])))
+    (is (= "/api/generate/Core,DNS,Python.txt" (core/selected-to-href ["Core" "DNS" "Python"]))))
   
   (testing "selected-to-href with empty list"
-    (is (= "/api/generate/" (core/selected-to-href [])))))
+    (is (= "/api/generate/.txt" (core/selected-to-href [])))))
 
 ;; ---- Event Tests ----
 
