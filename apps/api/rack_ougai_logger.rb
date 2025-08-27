@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'time'
-require 'rubygems'
-require 'ougai'
+require "time"
+require "rubygems"
+require "ougai"
 
 module Rack
   module Ougai
@@ -33,7 +33,7 @@ module Rack
         status, headers, _body = @app.call(env)
       ensure
         logger = @logger || env[RACK_LOGGER]
-        logger.info('HTTP Request', create_log(env, status, headers))
+        logger.info("HTTP Request", create_log(env, status, headers))
       end
 
       private
@@ -41,13 +41,13 @@ module Rack
       def create_log(env, status, headers)
         {
           time: Time.now,
-          remote_addr: env['HTTP_X_FORWARDED_FOR'] || env['REMOTE_ADDR'],
+          remote_addr: env["HTTP_X_FORWARDED_FOR"] || env["REMOTE_ADDR"],
           method: env[REQUEST_METHOD],
           path: env[PATH_INFO],
           query: env[QUERY_STRING],
           status: status.to_i,
-          request_id: headers['X-Request-ID'],
-          timing: env['TIMING']
+          request_id: headers["X-Request-ID"],
+          timing: env["TIMING"],
         }
       end
     end

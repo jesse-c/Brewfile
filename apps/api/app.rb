@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'roda'
-require 'securerandom'
-require_relative './lib/brewer/brewer'
+require "roda"
+require "securerandom"
+require_relative "./lib/brewer/brewer"
 
 # An API for working with Brewfile templates
 class App < Roda
@@ -19,33 +19,33 @@ class App < Roda
   end
 
   after do |_res|
-    env['TIMING'] = Time.now - @time
-    response['X-Request-ID'] = @request_id
+    env["TIMING"] = Time.now - @time
+    response["X-Request-ID"] = @request_id
   end
 
   not_found do
-    ''
+    ""
   end
 
   brewer = Brewer.new
 
   route do |r|
-    r.get 'health' do
+    r.get "health" do
       response.status = 200
 
-      ''
+      ""
     end
 
-    r.on 'api' do
-      r.get 'list' do
+    r.on "api" do
+      r.get "list" do
         results = brewer.list
         r.json { brewer.present(results, "json") }
         r.txt { brewer.present(results) }
       end
 
-      r.on 'search' do
+      r.on "search" do
         r.get String do |query|
-          queries = query.split(',')
+          queries = query.split(",")
 
           if queries.empty?
             response.status = 400
@@ -65,9 +65,9 @@ class App < Roda
         end
       end
 
-      r.on 'generate' do
+      r.on "generate" do
         r.get String do |query|
-          queries = query.split(',')
+          queries = query.split(",")
 
           if queries.empty?
             response.status = 400

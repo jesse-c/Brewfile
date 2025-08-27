@@ -19,7 +19,7 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
         working-directory: ./apps/api
     - name: Run linting
-      run: bundle exec rake lint
+      run: bundle exec rake check
       working-directory: ./apps/api
     - name: Run tests
       run: bundle exec rake test

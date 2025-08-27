@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require 'fileutils'
+require "fileutils"
 
-workers Integer(ENV['WEB_CONCURRENCY'] || 2)
-threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 5)
+workers Integer(ENV["WEB_CONCURRENCY"] || 2)
+threads_count = Integer(ENV["RAILS_MAX_THREADS"] || 5)
 threads threads_count, threads_count
 
-port        ENV['PORT']     || 3000
-environment ENV['RACK_ENV'] || 'development'
+port ENV["PORT"] || 3000
+environment ENV["RACK_ENV"] || "development"
 
-app_dir = File.expand_path('..', __dir__)
+app_dir = File.expand_path("..", __dir__)
 
 pid_dir = File.join(app_dir, "pids")
 
