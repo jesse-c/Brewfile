@@ -1,0 +1,11 @@
+:{$PORT}
+
+root * /usr/share/caddy
+
+# Serve static files
+file_server
+
+# Proxy API requests
+handle /api/* {
+    reverse_proxy {$API_HOST}:{$API_PORT}
+}

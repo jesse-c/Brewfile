@@ -14,10 +14,7 @@ WORKDIR /usr/app
 RUN npm install
 RUN npm run release
 
-FROM nginx:1.27.0-bookworm AS run
+FROM caddy:2.10.0-alpine AS run
 
-RUN rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf /usr/share/nginx/html
-
-COPY --from=build /usr/app/public /usr/share/nginx/html
-COPY nginx.conf /etc/nginx
-COPY default.conf.template /etc/nginx/templates/
+COPY --from=build /usr/app/public /usr/share/caddy
+COPY Caddyfile /etc/caddy/Caddyfile
