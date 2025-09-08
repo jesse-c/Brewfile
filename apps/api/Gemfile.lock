@@ -24,7 +24,7 @@ GEM
     puma (7.0.1)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.0)
+    rack (3.2.1)
     rack-app (11.0.2)
       rack (>= 3.0.0)
       rackup
