@@ -15,7 +15,7 @@
   "keywords": [],
   "devDependencies": {
     "process": "^0.11.10",
-    "shadow-cljs": "^3.2.0"
+    "shadow-cljs": "^3.2.1"
   },
   "license": "MIT",
   "dependencies": {
