@@ -41,7 +41,7 @@ GEM
     regexp_parser (2.11.3)
     rerun (0.14.0)
       listen (~> 3.0)
-    roda (3.96.0)
+    roda (3.97.0)
       rack
     rubocop (1.81.1)
       json (~> 2.3)
@@ -79,7 +79,7 @@ DEPENDENCIES
   rake (~> 13.3)
   rb-fsevent (~> 0.11.2)
   rerun (~> 0.14.0)
-  roda (~> 3.96)
+  roda (~> 3.97)
   rubocop (~> 1.81)
   rufo (~> 0.18.1)
 
