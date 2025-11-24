@@ -12,7 +12,7 @@ jobs:
   api:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -28,7 +28,7 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Set up Node
       uses: actions/setup-node@v6
       with:
