@@ -4,7 +4,7 @@ GEM
     ast (2.4.3)
     bigdecimal (3.1.7)
     ffi (1.16.3)
-    json (2.18.0)
+    json (2.18.1)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     listen (3.9.0)
@@ -17,14 +17,14 @@ GEM
     ougai (2.0.0)
       oj (~> 3.10)
     parallel (1.27.0)
-    parser (3.3.10.0)
+    parser (3.3.10.2)
       ast (~> 2.4.1)
       racc
-    prism (1.7.0)
-    puma (7.1.0)
+    prism (1.9.0)
+    puma (7.2.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.4)
+    rack (3.2.5)
     rack-app (11.0.2)
       rack (>= 3.0.0)
       rackup
@@ -43,7 +43,7 @@ GEM
       listen (~> 3.0)
     roda (3.101.0)
       rack
-    rubocop (1.82.1)
+    rubocop (1.84.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -51,7 +51,7 @@ GEM
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.48.0, < 2.0)
+      rubocop-ast (>= 1.49.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.49.0)
@@ -72,7 +72,7 @@ PLATFORMS
 DEPENDENCIES
   minitest (~> 5.27)
   ougai (~> 2.0)
-  puma (~> 7.1)
+  puma (~> 7.2)
   rack (~> 3.2)
   rack-app (~> 11.0)
   rack-test (~> 2.1)
@@ -80,7 +80,7 @@ DEPENDENCIES
   rb-fsevent (~> 0.11.2)
   rerun (~> 0.14.0)
   roda (~> 3.101)
-  rubocop (~> 1.82)
+  rubocop (~> 1.84)
   rufo (~> 0.18.2)
 
 BUNDLED WITH
