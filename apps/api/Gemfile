@@ -18,7 +18,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "rubocop", "~> 1.82"
+  gem "rubocop", "~> 1.84"
   gem "rufo", "~> 0.18.2"
 end
 
