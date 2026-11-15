@@ -6,7 +6,7 @@ all: build test run
 .PHONY: build-api
 build-api:
 	cd apps/api && \
-		nixpacks build . --name brewfile-api
+		docker build -t brewfile-api:latest .
 
 .PHONY: build-website
 build-website:
