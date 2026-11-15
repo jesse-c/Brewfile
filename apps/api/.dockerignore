@@ -4,3 +4,10 @@ lib/homebrew-bundle/**/Brewfile.lock.json
 lib/homebrew-bundle/**/Gemfile.lock
 lib/homebrew-bundle/**/coverage
 fly.toml
+
+.bundle
+.git
+.env
+.env.*
+pids
+vendor/bundle
