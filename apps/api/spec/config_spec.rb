@@ -6,7 +6,7 @@ require "rbconfig"
 
 describe "Deployment entry point" do
   it "boots and serves health requests with the logging middleware" do
-    script = <<~RUBY
+    script = <<~'RUBY'
       require "rack"
       app = Rack::Builder.parse_file("config.ru")
       response = Rack::MockRequest.new(app).get("/health")
