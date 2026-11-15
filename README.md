@@ -35,6 +35,11 @@ Run API tests with verbose output:
 $ make test-api-verbose
 ```
 
+Run selected API test files (Rake 13.4 supports multiple files in `TEST`):
+```
+$ TEST="spec/app_spec.rb spec/config_spec.rb" make test-api
+```
+
 Run only website tests:
 ```
 $ make test-website
