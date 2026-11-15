@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM clojure:tools-deps-1.11.3.1456-bookworm-slim AS build
+FROM clojure:temurin-21-tools-deps-1.12.6.1673-bookworm-slim AS build
 
 RUN apt-get update && apt-get install -y apt-transport-https curl
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
