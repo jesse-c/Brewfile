@@ -15,12 +15,12 @@
   "keywords": [],
   "devDependencies": {
     "process": "^0.11.10",
-    "shadow-cljs": "^3.4.0"
+    "shadow-cljs": "^3.5.14"
   },
   "license": "MIT",
   "dependencies": {
     "create-react-class": "^15.7.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   }
 }
